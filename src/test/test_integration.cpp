@@ -84,14 +84,14 @@ public:
     return result;
   }
 
-  virtual Json::Value getblockhash(uint64_t const& height) {
+  virtual Json::Value getblockhash(int height) {
     Json::Value result;
     result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";
     result["status"] = "OK";
     return result;
   }
 
-  virtual Json::Value calc_MoM(int32_t const& height, int32_t const& MoMdepth) {
+  virtual Json::Value calc_MoM(int height, int MoMdepth) {
     Json::Value result;
     result["coin"] = "BLUR";
     result["notarized_height"] = 1000;

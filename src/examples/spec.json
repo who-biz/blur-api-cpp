@@ -8,8 +8,6 @@
     },
     {
         "name": "getblockchaininfo",
-        "params": {
-        },
         "returns": {
            "status": "String",
            "height": 0,
@@ -66,8 +64,6 @@
     },
     {
         "name": "getbestblockhash",
-        "params": {
-        },
         "returns": {
            "hex": "xxxxxxxxxxxxxxxxxxxxxxx",
            "status": "String"

@@ -84,6 +84,20 @@
         }
     },
     {
+        "name": "calc_MoM",
+        "params": [
+           1000,
+              1
+        ],
+        "returns": {
+           "coin": "BLUR",
+           "notarized_height": 1000,
+           "notarized_MoMdepth": 1,
+           "notarized_MoM": "xxxxxxxxxxxxxxxxxxxxxx",
+           "status": "OK"
+        }
+    },
+    {
         "name": "notifyServer"
     },
     {

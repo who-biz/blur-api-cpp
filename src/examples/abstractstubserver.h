@@ -17,6 +17,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
             this->bindAndAddMethod(jsonrpc::Procedure("validateaddress", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::validateaddressI);
             this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getbestblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockhash", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::getblockhashI);
+            this->bindAndAddMethod(jsonrpc::Procedure("calc_MoM", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::calc_MoMI);
             this->bindAndAddNotification(jsonrpc::Procedure("notifyServer", jsonrpc::PARAMS_BY_NAME,  NULL), &AbstractStubServer::notifyServerI);
             this->bindAndAddMethod(jsonrpc::Procedure("addNumbers", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_INTEGER, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::addNumbersI);
             this->bindAndAddMethod(jsonrpc::Procedure("addNumbers2", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_REAL, "param01",jsonrpc::JSON_REAL,"param02",jsonrpc::JSON_REAL, NULL), &AbstractStubServer::addNumbers2I);
@@ -44,6 +45,10 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         inline virtual void getblockhashI(const Json::Value &request, Json::Value &response)
         {
             response = this->getblockhash(request[0u].asInt());
+        }
+        inline virtual void calc_MoMI(const Json::Value &request, Json::Value &response)
+        {
+            response = this->calc_MoM(request[0u].asInt(), request[1u].asInt());
         }
         inline virtual void notifyServerI(const Json::Value &/*request*/)
         {
@@ -74,6 +79,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         virtual Json::Value validateaddress(const std::string& param01) = 0;
         virtual Json::Value getbestblockhash() = 0;
         virtual Json::Value getblockhash(int param01) = 0;
+        virtual Json::Value calc_MoM(int param01, int param02) = 0;
         virtual void notifyServer() = 0;
         virtual int addNumbers(int param01, int param02) = 0;
         virtual double addNumbers2(double param01, double param02) = 0;

@@ -62,6 +62,17 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
+        Json::Value calc_MoM(int param01, int param02) 
+        {
+            Json::Value p;
+            p.append(param01);
+            p.append(param02);
+            Json::Value result = this->CallMethod("calc_MoM",p);
+            if (result.isObject())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
         void notifyServer() 
         {
             Json::Value p;

@@ -12,7 +12,35 @@
 1. Run the newly created sampleserver: `./sampleserver`
 2. Call an RPC method
 
-*Example:*
+
+# Existing RPC Methods & Examples
+
+- `getblockchaininfo`
+
 ```
  curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockchaininfo", "params":[]}' http://localhost:8383
+```
+
+- `getbestblockhash`
+
+```
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getbestblockhash", "params":[]}' http://localhost:8383
+```
+
+- `getblockhash`**: (**`params` = `[ height ]`**)**
+
+```
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockhash", "params":[1000]}' http://localhost:8383
+```
+
+- `calc_MoM`**: (**`params` = `[ height, MoMdepth ]`**)**
+
+```
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "calc_MoM", "params":[1000, 1]}' http://localhost:8383
+```
+
+- `validateaddress`**: (**`params`: `[ "address" ]`**)**
+
+```
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockhash", "params":["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"]}' http://localhost:8383
 ```

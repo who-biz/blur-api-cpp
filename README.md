@@ -1,3 +1,16 @@
+
+## Disclaimer
+
+**This repository was forked from https://github.com/cinemast/libjson-rpc-cpp, and is inspired by https://github.com/minium/bitcoin-api-cpp**.
+
+**As a result, THE README BELOW is a direct copy of that from cinemast/libjson-rpc-cpp**.
+
+**Please see <a href="https://github.com/who-biz/blur-api-cpp/blob/master/Instructions.md">Instructions.md for information on compiling this library & the BlurAPI stub server</a>**.
+
+
+---
+
+
 **I am currently working on a new C++17 implementation -> [json-rpc-cxx](https://github.com/jsonrpcx/json-rpc-cxx).**
 
 Master [![Build Status](https://travis-ci.org/cinemast/libjson-rpc-cpp.png?branch=master)](https://travis-ci.org/cinemast/libjson-rpc-cpp) [![codecov](https://codecov.io/gh/cinemast/libjson-rpc-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/cinemast/libjson-rpc-cpp)

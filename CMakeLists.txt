@@ -97,6 +97,9 @@ include_directories("${CMAKE_BINARY_DIR}/gen/jsonrpccpp/common")
 # the core framework
 add_subdirectory(src/jsonrpccpp)
 
+# blur api
+add_subdirectory(src/blur_api)
+
 #the stubgenerator
 if (COMPILE_STUBGEN)
     add_subdirectory(src/stubgenerator)

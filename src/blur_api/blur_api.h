@@ -13,4 +13,5 @@ public:
     /* === Constructor and Destructor === */
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 500);
     ~BlurAPI();
+    Json::Value sendcommand(std::string const& command, Json::Value const& params);
 };

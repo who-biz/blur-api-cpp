@@ -20,3 +20,11 @@ BlurAPI::~BlurAPI()
     delete client;
     delete httpClient;
 }
+
+
+Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)
+{
+    Json::Value result;
+    result = client->CallMethod(command, params);
+    return result;
+}

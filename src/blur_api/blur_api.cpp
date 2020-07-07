@@ -17,12 +17,13 @@ BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std
 
 BlurAPI::~BlurAPI()
 {
+    delete m_blur_api;
     delete client;
     delete httpClient;
 }
 
-BlurAPI* BlurAPI::get_blur_api() {
-  return m_blur_api;
+BlurAPI BlurAPI::get_blur_api() {
+  return *m_blur_api;
 }
 
 Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)

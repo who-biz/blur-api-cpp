@@ -11,6 +11,7 @@
 #include "gen/abstractstubserver.h"
 #include <jsonrpccpp/server/connectors/httpserver.h>
 #include <stdio.h>
+#include "blur_api/blur_api.h"
 
 using namespace jsonrpc;
 using namespace std;
@@ -194,6 +195,13 @@ string MyStubServer::methodWithoutParameters() { return "Test"; }
 
 int main() {
   HttpServer httpserver(8383);
+  std::string username = "user";
+  std::string password = "password";
+  std::string host = "127.0.0.1";
+  int const port = 21111;
+
+  BlurAPI blur_api(username, password, host, port);
+
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
   s.StartListening();

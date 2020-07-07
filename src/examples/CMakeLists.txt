@@ -95,7 +95,7 @@ if (COMPILE_STUBGEN)
 
     if(HTTP_SERVER)
         add_executable(stubserversample stubserver.cpp ${CMAKE_BINARY_DIR}/gen/abstractstubserver.h)
-        target_link_libraries(stubserversample jsonrpcserver)
+        target_link_libraries(stubserversample jsonrpcserver blurapi)
     endif()
 endif()
 

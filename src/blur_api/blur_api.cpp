@@ -11,14 +11,13 @@
 
 BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout)
 : httpClient(new jsonrpc::HttpClient("http://" + user + ":" + password + "@" + host + ":" + std::to_string(port))),
-  client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2)), m_blur_api(new BlurAPI(user,password,host,port,httpTimeout))
+  client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2))
 {
     httpClient->SetTimeout(httpTimeout);
 }
 
 BlurAPI::~BlurAPI()
 {
-    delete m_blur_api;
     delete client;
     delete httpClient;
 }

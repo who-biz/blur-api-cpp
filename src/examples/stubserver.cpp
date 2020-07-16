@@ -57,7 +57,7 @@ public:
 
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
-    : AbstractStubServer(connector, type), BlurAPI() {}
+    : AbstractStubServer(connector, type), m_blur_api(BlurAPI("user","password","127.0.0.1", 21111)) {}
 
 void MyStubServer::notifyServer() { cout << "Server got notified" << endl; }
 
@@ -229,8 +229,7 @@ int main() {
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
 
-  BlurAPI blur = BlurAPI();
-  s.connect_blur_api(blur);
+  s.connect_blur_api(s.m_blur_api);
 
   s.StartListening();
   cout << "Hit enter to stop the server" << endl;

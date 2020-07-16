@@ -21,7 +21,7 @@
 
 
 BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout)
-: httpClient(new jsonrpc::HttpClient("http://" + user + ":" + password + "@" + host + ":" + std::to_string(port))),
+: httpClient(new jsonrpc::HttpClient("http://" + host + ":" + std::to_string(port))),
   client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2))
 {
     httpClient->SetTimeout(httpTimeout);
@@ -36,7 +36,7 @@ BlurAPI::~BlurAPI()
 getinfo_t BlurAPI::getblockchaininfo()
 {
     Json::Value result;
-    Json::Value params { };
+    Json::Value params;
     std::cout << "before sendcommand getblockchaininfo ------" << std::endl;
     try {
       result = sendcommand("getblockchaininfo", params);

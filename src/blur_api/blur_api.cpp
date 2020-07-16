@@ -1,4 +1,15 @@
+/**
+ * @file    bitcoinapi.cpp
+ * @author  Krzysztof Okupski
+ * @date    29.10.2014
+ * @version 1.0
+ *
+ * Implementation of a C++ wrapper for communication with
+ * a running instance of Bitcoin daemon over JSON-RPC.
+ */
+
 #include "blur_api.h"
+#include "exception.h"
 
 #include <string>
 #include <stdexcept>
@@ -11,7 +22,7 @@
 
 BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout)
 : httpClient(new jsonrpc::HttpClient("http://" + user + ":" + password + "@" + host + ":" + std::to_string(port))),
-  client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2))
+  client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V1))
 {
     httpClient->SetTimeout(httpTimeout);
 }
@@ -52,6 +63,11 @@ BlurAPI BlurAPI::get_blur_api() {
 Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)
 {
     Json::Value result;
-    result = client->CallMethod(command, params);
+    try {
+      result = client->CallMethod(command, params);
+    } catch (jsonrpc::JsonRpcException& e) {
+       BlurException error(e.GetCode(), e.GetMessage());
+       throw error;
+    }
     return result;
 }

@@ -101,6 +101,9 @@ include_directories("${CMAKE_BINARY_DIR}/gen/jsonrpccpp/common")
 # the core framework
 add_subdirectory(src/jsonrpccpp)
 
+# backward-cpp for stack traces
+add_subdirectory(backward-cpp)
+
 # blur api
 add_subdirectory(src/blur_api)
 

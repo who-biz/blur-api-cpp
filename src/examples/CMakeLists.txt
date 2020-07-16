@@ -36,6 +36,8 @@ include_directories(../blur_api)
 include_directories(${CMAKE_BINARY_DIR})
 include_directories(${MHD_INCLUDE_DIRS})
 
+find_library(DWARF dwarf)
+
 if(UNIX)
     if(UNIX_DOMAIN_SOCKET_SERVER AND UNIX_DOMAIN_SOCKET_CLIENT)
         add_executable(unixdomainsocketserversample unixdomainsocketserver.cpp)
@@ -95,8 +97,9 @@ if (COMPILE_STUBGEN)
     endif()
 
     if(HTTP_SERVER)
-        add_executable(stubserversample stubserver.cpp ${CMAKE_BINARY_DIR}/gen/abstractstubserver.h)
-        target_link_libraries(stubserversample jsonrpccommon jsonrpcclient jsonrpcserver blurapi)
+        add_executable(stubserversample stubserver.cpp ${CMAKE_BINARY_DIR}/gen/abstractstubserver.h ${BACKWARD_ENABLE})
+        add_backward(stubserversample)
+        target_link_libraries(stubserversample jsonrpccommon jsonrpcclient jsonrpcserver blurapi dwarf)
     endif()
 endif()
 

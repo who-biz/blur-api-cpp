@@ -1,6 +1,6 @@
 # Find header and source files
-FILE(GLOB blurapi_header ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
-FILE(GLOB blurapi_source ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+FILE(GLOB blurapi_header types.h exceptions.h blur_api.h)
+FILE(GLOB blurapi_source blur_api.cpp)
 
 # Set target libraries
 ADD_LIBRARY(blurapi SHARED ${blurapi_source})
@@ -11,12 +11,12 @@ SET_TARGET_PROPERTIES(blurapi_static PROPERTIES OUTPUT_NAME blurapi)
 
 # Link the library with json-rpc-cpp libs
 TARGET_LINK_LIBRARIES(blurapi
-                        jsonrpccpp-common
-                        jsonrpccpp-client)
+                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-common.so
+                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-client.so)
 
 TARGET_LINK_LIBRARIES(blurapi_static
-                        jsonrpccpp-common
-                        jsonrpccpp-client)
+                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-common.a
+                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-client.a)
 
 # Set version settings
 SET(VERSION_STRING ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})

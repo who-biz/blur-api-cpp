@@ -59,6 +59,10 @@ set(COMPILE_TESTS YES CACHE BOOL "Compile test framework")
 set(COMPILE_STUBGEN YES CACHE BOOL "Compile the stubgenerator")
 set(COMPILE_EXAMPLES YES CACHE BOOL "Compile example programs")
 
+set(CURL_LIBRARY "-lcurl")
+find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
+
 option(WITH_COVERAGE "Build with code coverage flags" ON)
 
 # print actual settings

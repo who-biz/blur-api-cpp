@@ -11,15 +11,35 @@
 #include "gen/abstractstubserver.h"
 #include <jsonrpccpp/server/connectors/httpserver.h>
 #include <stdio.h>
-#include "blur_api/blur_api.h"
+#include "exception.h"
+#include "blur_api.h"
+#include <string>
+#include <memory>
+#include <stdexcept>
+#include <cmath>
+
+#include <jsonrpccpp/client.h>
+#include <jsonrpccpp/client/connectors/httpclient.h>
+
 
 using namespace jsonrpc;
 using namespace std;
+
+namespace jsonrpc { class HttpClient; class Client; }
 
 class MyStubServer : public AbstractStubServer {
 public:
   MyStubServer(AbstractServerConnector &connector, serverVersion_t type);
 
+  std::string username = "user";
+  std::string password = "password";
+  std::string host = "127.0.0.1";
+  int port = 21111;
+  int httpTimeout = 500;
+
+  void connect_blur_api(std::shared_ptr<BlurAPI>& blur_api);
+
+  std::shared_ptr<BlurAPI> m_blur_api;
   virtual void notifyServer();
   virtual std::string sayHello(const std::string &name);
   virtual Json::Value getblockchaininfo();
@@ -45,7 +65,6 @@ void MyStubServer::notifyServer() { cout << "Server got notified" << endl; }
 {
 };*/
 
-
 string MyStubServer::sayHello(const string &name) {
   if (name == "")
     throw JsonRpcException(-32100, "Name was empty");
@@ -53,8 +72,15 @@ string MyStubServer::sayHello(const string &name) {
 }
 
 Json::Value MyStubServer::getblockchaininfo() {
+
   Json::Value result;
-  result["status"] = "OK";
+  getinfo_t info;
+  std::cout << "CALLED FROM MyStubServer: getblockchaininfo()" << std::endl;
+
+  info = m_blur_api->getblockchaininfo();
+  result["version"] = info.version;
+
+  result["status"] = info.status;
   result["height"] = 2000;
   result["target_height"] = 2001;
   result["difficulty"] = 100000000;
@@ -78,7 +104,7 @@ Json::Value MyStubServer::getblockchaininfo() {
   result["testnet"] = false;
   result["stagenet"] = false;
   result["top_block_hash"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  result["cumulative_difficulty"] = 10230502020;
+  result["cumulative_difficulty"] = 102302020;
   result["block_size_limit"] = 292000;
   result["block_size_median"] = 1000;
   result["start_time"] = 0;
@@ -88,7 +114,7 @@ Json::Value MyStubServer::getblockchaininfo() {
   result["bootstrap_daemon_address"] = "address";
   result["height_without_bootstrap"] = 2000;
   result["was_bootstrap_ever_used"] = false;
-  result["version"] = "v0.1.9.9.4";
+//  result["version"] = "v0.1.9.9.4";
 
   return result;
 }
@@ -191,23 +217,23 @@ Json::Value MyStubServer::buildObject(const string &name, int age) {
   return result;
 }
 
+void MyStubServer::connect_blur_api(std::shared_ptr<BlurAPI>& blur) {
+  m_blur_api = blur;
+}
+
 string MyStubServer::methodWithoutParameters() { return "Test"; }
 
 int main() {
   HttpServer httpserver(8383);
-  std::string username = "user";
-  std::string password = "password";
-  std::string host = "127.0.0.1";
-  int const port = 21111;
-
-  BlurAPI blur_api(username, password, host, port);
 
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
+
+  BlurAPI blur = blur_api_init();
+
   s.StartListening();
   cout << "Hit enter to stop the server" << endl;
   getchar();
-
   s.StopListening();
 
   return 0;

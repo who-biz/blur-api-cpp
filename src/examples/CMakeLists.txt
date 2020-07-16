@@ -32,6 +32,7 @@ add_custom_command(
 )
 
 include_directories(..)
+include_directories(../blur_api)
 include_directories(${CMAKE_BINARY_DIR})
 include_directories(${MHD_INCLUDE_DIRS})
 
@@ -95,7 +96,7 @@ if (COMPILE_STUBGEN)
 
     if(HTTP_SERVER)
         add_executable(stubserversample stubserver.cpp ${CMAKE_BINARY_DIR}/gen/abstractstubserver.h)
-        target_link_libraries(stubserversample jsonrpcserver blurapi)
+        target_link_libraries(stubserversample jsonrpccommon jsonrpcclient jsonrpcserver blurapi)
     endif()
 endif()
 

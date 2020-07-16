@@ -27,7 +27,7 @@ using namespace std;
 
 namespace jsonrpc { class HttpClient; class Client; }
 
-class MyStubServer : public AbstractStubServer {
+class MyStubServer : public AbstractStubServer, public BlurAPI {
 public:
   MyStubServer(AbstractServerConnector &connector, serverVersion_t type);
 
@@ -37,9 +37,9 @@ public:
   int port = 21111;
   int httpTimeout = 500;
 
-  void connect_blur_api(std::shared_ptr<BlurAPI>& blur_api);
+  void connect_blur_api(BlurAPI&);
 
-  std::shared_ptr<BlurAPI> m_blur_api;
+  BlurAPI m_blur_api;
   virtual void notifyServer();
   virtual std::string sayHello(const std::string &name);
   virtual Json::Value getblockchaininfo();
@@ -57,7 +57,7 @@ public:
 
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
-    : AbstractStubServer(connector, type) {}
+    : AbstractStubServer(connector, type), BlurAPI() {}
 
 void MyStubServer::notifyServer() { cout << "Server got notified" << endl; }
 
@@ -77,7 +77,7 @@ Json::Value MyStubServer::getblockchaininfo() {
   getinfo_t info;
   std::cout << "CALLED FROM MyStubServer: getblockchaininfo()" << std::endl;
 
-  info = m_blur_api->getblockchaininfo();
+  info = m_blur_api.getblockchaininfo();
   result["version"] = info.version;
 
   result["status"] = info.status;
@@ -217,7 +217,7 @@ Json::Value MyStubServer::buildObject(const string &name, int age) {
   return result;
 }
 
-void MyStubServer::connect_blur_api(std::shared_ptr<BlurAPI>& blur) {
+void MyStubServer::connect_blur_api(BlurAPI& blur) {
   m_blur_api = blur;
 }
 
@@ -229,7 +229,8 @@ int main() {
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
 
-  BlurAPI blur = blur_api_init();
+  BlurAPI blur = BlurAPI();
+  s.connect_blur_api(blur);
 
   s.StartListening();
   cout << "Hit enter to stop the server" << endl;

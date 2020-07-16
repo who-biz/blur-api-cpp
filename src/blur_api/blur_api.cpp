@@ -37,14 +37,13 @@ getinfo_t BlurAPI::getblockchaininfo()
 }
 
 
-BlurAPI blur_api_init() {
+BlurAPI::BlurAPI() {
   std::string username = "user";
   std::string password = "password";
   std::string host = "127.0.0.1";
   int port = 21111;
 
   BlurAPI blur(username, password, host, port);
-  return blur;
 }
 
 BlurAPI BlurAPI::get_blur_api() {

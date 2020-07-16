@@ -15,6 +15,7 @@ public:
     BlurAPI* m_blur_api;
     getinfo_t getblockchaininfo();
     BlurAPI get_blur_api();
+    BlurAPI();
     ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);
 };

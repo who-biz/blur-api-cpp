@@ -1,11 +1,10 @@
 # How to Create a StubServer
 
-1. Clone this repo, and move into directory: `git clone https://github.com/blur-network/blur-libjson-rpc-cpp && cd blur-libjson-rpc-cpp`
-2. Create build directory, and compile the library: `mkdir build && cd build && cmake .. && make`
-3. Copy stubserver & spec example to build directory: `cp ../src/examples/stubserver.cpp ./ && cp ../src/examples/spec.json ./`
-4. Create stubserver headers: `jsonrpcstub spec.json --cpp-server=AbstractStubServer --cpp-client=StubClient`
-5. Move generated headers to gen directory: `mkdir -p gen && mv abstractstubserver.h gen/ && mv stubclient.h gen/`
-6. Compile stubserver: `g++ stubserver.cpp -ljsoncpp -lmicrohttpd -ljsonrpccpp-common -ljsonrpccpp-server -o sampleserver`
+1. Clone this repo, and move into directory: `git clone https://github.com/who-biz/blur-api-cpp && cd blur-api-cpp`
+2. Create build directory, and compile: `mkdir build && cd build && cmake .. && make`
+- *Note: You may specify* `-DCMAKE_BUILD_TYPE=Debug`*, to enable prettyprinted stack traces, courtesy of <a href="https://github.com/bombela/backward-cpp">bombela/backward-cpp</a>, but you will need to install both the* `libdwarf-dev libelf-dev` *packages.*
+3. Start the BlurAPI server: `./bin/blurapiserver`
+4. Call an RPC method from below
 
 # How to Call RPC Methods
 

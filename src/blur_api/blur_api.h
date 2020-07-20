@@ -1,4 +1,5 @@
-#include "types.h"
+#include <string>
+#include "exception.h"
 
 namespace jsonrpc { class HttpClient; class Client; }
 
@@ -13,7 +14,7 @@ public:
     /* === Constructor and Destructor === */
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 500);
     BlurAPI* m_blur_api;
-    getinfo_t getblockchaininfo();
+    Json::Value getblockchaininfo();
     BlurAPI get_blur_api();
     BlurAPI();
     ~BlurAPI();

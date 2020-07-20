@@ -9,7 +9,6 @@
  */
 
 #include "blur_api.h"
-#include "exception.h"
 
 #include <string>
 #include <stdexcept>
@@ -33,21 +32,19 @@ BlurAPI::~BlurAPI()
     delete httpClient;
 }
 
-getinfo_t BlurAPI::getblockchaininfo()
+Json::Value BlurAPI::getblockchaininfo()
 {
     Json::Value result;
     Json::Value params;
     std::cout << "before sendcommand getblockchaininfo ------" << std::endl;
+
     try {
       result = sendcommand("getblockchaininfo", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
-    getinfo_t info;
-    info.version = result["version"].asString();
-    info.status = result["status"].asString();
-    std::cout << "Version: " << info.version << " ||  Status: " << info.status << info.status << std::endl;
-    return info;
+
+    return result;
 }
 
 

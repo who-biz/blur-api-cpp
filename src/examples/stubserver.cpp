@@ -11,7 +11,6 @@
 #include "gen/abstractstubserver.h"
 #include <jsonrpccpp/server/connectors/httpserver.h>
 #include <stdio.h>
-#include "exception.h"
 #include "blur_api.h"
 #include <string>
 #include <memory>
@@ -74,11 +73,10 @@ string MyStubServer::sayHello(const string &name) {
 Json::Value MyStubServer::getblockchaininfo() {
 
   Json::Value result;
-  getinfo_t info;
   std::cout << "CALLED FROM MyStubServer: getblockchaininfo()" << std::endl;
 
-  info = m_blur_api.getblockchaininfo();
-  result["version"] = info.version;
+  result = m_blur_api.getblockchaininfo();
+/*  result["version"] = info.version;
 
   result["status"] = info.status;
   result["height"] = 2000;
@@ -113,7 +111,7 @@ Json::Value MyStubServer::getblockchaininfo() {
   result["untrusted"] = false;
   result["bootstrap_daemon_address"] = "address";
   result["height_without_bootstrap"] = 2000;
-  result["was_bootstrap_ever_used"] = false;
+  result["was_bootstrap_ever_used"] = false;*/
 //  result["version"] = "v0.1.9.9.4";
 
   return result;

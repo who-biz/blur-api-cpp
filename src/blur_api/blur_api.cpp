@@ -79,6 +79,19 @@ Json::Value BlurAPI::getblockhash(int const& height)
     return result;
 }
 
+Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
+{
+    Json::Value result, params;
+    params.append(height);
+    params.append(MoMdepth);
+    try {
+      result = sendcommand("calc_MoM", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
   std::string username = "user";
   std::string password = "password";

@@ -102,7 +102,9 @@ include_directories("${CMAKE_BINARY_DIR}/gen/jsonrpccpp/common")
 add_subdirectory(src/jsonrpccpp)
 
 # backward-cpp for stack traces
-add_subdirectory(backward-cpp)
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+  add_subdirectory(backward-cpp)
+endif()
 
 # blur api
 add_subdirectory(src/blur_api)

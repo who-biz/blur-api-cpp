@@ -71,69 +71,17 @@ string MyStubServer::sayHello(const string &name) {
 }
 
 Json::Value MyStubServer::getblockchaininfo() {
-
-  Json::Value result;
-  std::cout << "CALLED FROM MyStubServer: getblockchaininfo()" << std::endl;
-
-  result = m_blur_api.getblockchaininfo();
-/*  result["version"] = info.version;
-
-  result["status"] = info.status;
-  result["height"] = 2000;
-  result["target_height"] = 2001;
-  result["difficulty"] = 100000000;
-  result["target"] = 100000000;
-  result["tx_count"] = 1234;
-  result["notarization_count"] = 3;
-  result["notarizedhash"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  result["notarizedtxid"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  result["notarized"] = 1800;
-  result["prevMoMheight"] = 0;
-  result["notarized_MoMdepth"] = 0;
-  result["notarized_MoM"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  result["tx_pool_size"] = 3;
-  result["alt_blocks_count"] = 0;
-  result["outgoing_connections_count"] = 8;
-  result["incoming_connections_count"] = 8;
-  result["rpc_connections_count"] = 1;
-  result["white_peerlist_size"] = 8;
-  result["grey_peerlist_size"] = 8;
-  result["mainnet"] = true;
-  result["testnet"] = false;
-  result["stagenet"] = false;
-  result["top_block_hash"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-  result["cumulative_difficulty"] = 102302020;
-  result["block_size_limit"] = 292000;
-  result["block_size_median"] = 1000;
-  result["start_time"] = 0;
-  result["free_space"] = 0;
-  result["offline"] = false;
-  result["untrusted"] = false;
-  result["bootstrap_daemon_address"] = "address";
-  result["height_without_bootstrap"] = 2000;
-  result["was_bootstrap_ever_used"] = false;*/
-//  result["version"] = "v0.1.9.9.4";
-
+  Json::Value result = m_blur_api.getblockchaininfo();
   return result;
 }
 
 Json::Value MyStubServer::validateaddress(std::string const& address) {
-  Json::Value result;
-  result["isvalid"] = true;
-  result["address"] = "xxxxxxxxxx";
-  result["scriptPubKey"] = "xxxxxxxxxx";
-  result["segid"] = 1;
-  result["ismine"] = true;
-  result["iswatchonly"] = false;
-  result["isscript"] = false;
-  result["status"] = "OK";
+  Json::Value result = m_blur_api.validateaddress(address);
   return result;
 }
 
 Json::Value MyStubServer::getbestblockhash() {
-  Json::Value result;
-  result["hex"] = "xxxxxxxxxxxxxxxxxxxxxx";
-  result["status"] = "OK";
+  Json::Value result = m_blur_api.getbestblockhash();
   return result;
 }
 

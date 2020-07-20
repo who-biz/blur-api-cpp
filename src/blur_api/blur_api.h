@@ -13,7 +13,6 @@ public:
     /* === Constructor and Destructor === */
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 500);
     BlurAPI* m_blur_api;
-    std::string IntegerToString(int num);
     getinfo_t getblockchaininfo();
     BlurAPI get_blur_api();
     BlurAPI();

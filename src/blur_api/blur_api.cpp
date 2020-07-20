@@ -21,7 +21,7 @@
 
 
 BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout)
-: httpClient(new jsonrpc::HttpClient("http://" + host + ":" + IntegerToString(port) + "/json_rpc")),
+: httpClient(new jsonrpc::HttpClient("http://" + host + ":" + std::to_string(port) + "/json_rpc")),
   client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2))
 {
     httpClient->SetTimeout(httpTimeout);
@@ -31,13 +31,6 @@ BlurAPI::~BlurAPI()
 {
     delete client;
     delete httpClient;
-}
-
-std::string BlurAPI::IntegerToString(int num)
-{
-   std::ostringstream ss;
-   ss << num;
-   return ss.str();
 }
 
 getinfo_t BlurAPI::getblockchaininfo()

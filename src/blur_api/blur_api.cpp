@@ -67,6 +67,18 @@ Json::Value BlurAPI::getbestblockhash()
     return result;
 }
 
+Json::Value BlurAPI::getblockhash(int const& height)
+{
+    Json::Value result, params;
+    params.append(height);
+    try {
+      result = sendcommand("getblockhash", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
   std::string username = "user";
   std::string password = "password";

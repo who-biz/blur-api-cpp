@@ -44,7 +44,7 @@ public:
   virtual Json::Value getblockchaininfo();
   virtual Json::Value validateaddress(std::string const& address);
   virtual Json::Value getbestblockhash();
-  virtual Json::Value getblockhash(int height);
+  virtual Json::Value getblockhash(int const height);
   virtual Json::Value calc_MoM(int height, int MoMdepth);
   virtual int addNumbers(int param1, int param2);
   virtual double addNumbers2(double param1, double param2);
@@ -85,10 +85,8 @@ Json::Value MyStubServer::getbestblockhash() {
   return result;
 }
 
-Json::Value MyStubServer::getblockhash(int height) {
-  Json::Value result;
-  result["hex"] = "xxxxxxxxxxxxxxxxxxxxxx";
-  result["status"] = "OK";
+Json::Value MyStubServer::getblockhash(int const height) {
+  Json::Value result = m_blur_api.getblockhash(height);
   return result;
 }
 

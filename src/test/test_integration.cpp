@@ -82,7 +82,8 @@ public:
   }
 
   virtual Json::Value validateaddress(std::string const& address) {
-    Json::Value result;
+    Json::Value result, params;
+    params.append(address);
     result["isvalid"] = true;
     result["address"] = "xxxxxxxxxx";
     result["scriptPubKey"] = "xxxxxxxxxx";
@@ -102,14 +103,16 @@ public:
   }
 
   virtual Json::Value getblockhash(int height) {
-    Json::Value result;
+    Json::Value result, params;
+    params.append(height);
     result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";
     result["status"] = "OK";
     return result;
   }
 
   virtual Json::Value calc_MoM(int height, int MoMdepth) {
-    Json::Value result;
+    Json::Value result, params;
+    params.append(height), params.append(MoMdepth);
     result["coin"] = "BLUR";
     result["notarized_height"] = 1000;
     result["notarized_MoMdepth"] = 1;

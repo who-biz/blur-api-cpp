@@ -17,6 +17,7 @@ public:
     Json::Value getblockchaininfo();
     Json::Value validateaddress(std::string const& address);
     Json::Value getbestblockhash();
+    Json::Value get_notarization_data();
     Json::Value getblockhash(int const& height);
     Json::Value calc_MoM(int const& height, int const& MoMdepth);
     BlurAPI get_blur_api();

@@ -42,6 +42,7 @@ public:
   virtual void notifyServer();
   virtual std::string sayHello(const std::string &name);
   virtual Json::Value getblockchaininfo();
+  virtual Json::Value get_notarization_data();
   virtual Json::Value validateaddress(std::string const& address);
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
@@ -72,6 +73,11 @@ string MyStubServer::sayHello(const string &name) {
 
 Json::Value MyStubServer::getblockchaininfo() {
   Json::Value result = m_blur_api.getblockchaininfo();
+  return result;
+}
+
+Json::Value MyStubServer::get_notarization_data() {
+  Json::Value result = m_blur_api.get_notarization_data();
   return result;
 }
 

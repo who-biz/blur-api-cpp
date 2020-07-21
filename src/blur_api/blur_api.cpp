@@ -44,6 +44,17 @@ Json::Value BlurAPI::getblockchaininfo()
     return result;
 }
 
+Json::Value BlurAPI::get_notarization_data()
+{
+    Json::Value result, params;
+    try {
+      result = sendcommand("get_notarization_data", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 Json::Value BlurAPI::validateaddress(std::string const& address)
 {
     Json::Value result, params;

@@ -14,6 +14,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         {
             this->bindAndAddMethod(jsonrpc::Procedure("sayHello", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_STRING, "name",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::sayHelloI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockchaininfo", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getblockchaininfoI);
+            this->bindAndAddMethod(jsonrpc::Procedure("get_notarization_data", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::get_notarization_dataI);
             this->bindAndAddMethod(jsonrpc::Procedure("validateaddress", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::validateaddressI);
             this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getbestblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockhash", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::getblockhashI);
@@ -33,6 +34,10 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         inline virtual void getblockchaininfoI(const Json::Value &/*request*/, Json::Value &response)
         {
             response = this->getblockchaininfo();
+        }
+        inline virtual void get_notarization_dataI(const Json::Value &/*request*/, Json::Value &response)
+        {
+            response = this->get_notarization_data();
         }
         inline virtual void validateaddressI(const Json::Value &request, Json::Value &response)
         {
@@ -76,6 +81,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         }
         virtual std::string sayHello(const std::string& name) = 0;
         virtual Json::Value getblockchaininfo() = 0;
+        virtual Json::Value get_notarization_data() = 0;
         virtual Json::Value validateaddress(const std::string& param01) = 0;
         virtual Json::Value getbestblockhash() = 0;
         virtual Json::Value getblockhash(int param01) = 0;

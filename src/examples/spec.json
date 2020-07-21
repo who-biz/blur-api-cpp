@@ -47,6 +47,23 @@
         }
     },
     {
+        "name": "get_notarization_data",
+        "returns": {
+           "assetchains_symbol": "String",
+           "current_chain_height": 0,
+           "current_chain_hash": "String",
+           "current_chain_pow": "String",
+           "notarized_height": 0,
+           "notarized_hash": "String",
+           "notarized_txid": "String",
+           "notarized": 0,
+           "embedded_btc_hash": "String",
+           "notarizations_completed": 0,
+           "notarizations_merkle": "String",
+           "status": "String"
+        }
+    },
+    {
         "name": "validateaddress",
         "params": [
             "xxxxxxxxxxxxxxxx"

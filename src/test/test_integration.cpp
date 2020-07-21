@@ -64,6 +64,23 @@ public:
     return result;
   }
 
+  virtual Json::Value get_notarization_data() {
+    Json::Value result;
+    result["assetchains_symbol"] = "BLUR";
+    result["current_chain_height"] = 1000;
+    result["current_chain_hash"] = "xxxxxxxxxxxxxxxx";
+    result["current_chain_pow"] = "xxxxxxxxxxxxxxxx";
+    result["notarized_height"] = 1000;
+    result["notarized_hash"] = "xxxxxxxxxxxxxxxx";
+    result["notarized_txid"] = "xxxxxxxxxxxxxxxx";
+    result["notarized"] = 10;
+    result["embedded_btc_hash"] = "xxxxxxxxxxxxxxx";
+    result["notarizations_completed"] = 10;
+    result["notarizations_merkle"] = "xxxxxxxxxxxxxxx";
+    result["status"] = "OK";
+    return result;
+  }
+
   virtual Json::Value validateaddress(std::string const& address) {
     Json::Value result;
     result["isvalid"] = true;

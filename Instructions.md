@@ -12,6 +12,8 @@ Perform the following steps to compile and run the BlurAPI server:
 
 # RPC Methods/Examples
 
+*Please note: the data in responses for* `validateaddress` *and* `calc_MoM` *methods are merely placeholders with default values, for compatibility with iguana. Response fields (for these two methods, only) will not change with different parameter values.*
+
 **Method: `getblockchaininfo`**
 
 ```

@@ -168,9 +168,9 @@ int main(int ac, char** av) {
     desc.add_options()
       ("help", "Show help text for server startup flags")
       ("host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --host=\"127.0.0.1\")")
-      ("port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)")
-      ("username", boost::program_options::value<std::string>(), "Username for blur daemon rpc login \n (Example: --user=\"username\")")
-      ("password", boost::program_options::value<std::string>(), "Password for blur daemon rpc login \n (Example: --password=\"password\")");
+      ("port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)");
+/*      ("username", boost::program_options::value<std::string>(), "Username for blur daemon rpc login \n (Example: --user=\"username\")")
+      ("password", boost::program_options::value<std::string>(), "Password for blur daemon rpc login \n (Example: --password=\"password\")");*/
 
     boost::program_options::variables_map vm;
     boost::program_options::store(boost::program_options::parse_command_line(ac, av, desc), vm);
@@ -197,7 +197,7 @@ int main(int ac, char** av) {
       return 1;
     }
 
-    if (vm.count("username")) {
+/*    if (vm.count("username")) {
       username = vm["username"].as<std::string>();
       if (vm.count("password") == 0) {
         std::cout << "ERROR: Username provided for blur daemon RPC login, but no password!" << std::endl;
@@ -215,7 +215,8 @@ int main(int ac, char** av) {
       } else {
         username = vm["username"].as<std::string>();
       }
-    }
+    }*/
+
   } catch (std::exception& e) {
     std::cout << "ERROR: Exception when parsing program options: " << e.what() << std::endl;
     return 1;

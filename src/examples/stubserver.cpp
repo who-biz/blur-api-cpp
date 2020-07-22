@@ -7,19 +7,19 @@
  * @license See attached LICENSE.txt
  ************************************************************************/
 #include <iostream>
-
-#include "gen/abstractstubserver.h"
-#include <jsonrpccpp/server/connectors/httpserver.h>
 #include <stdio.h>
-#include "blur_api.h"
 #include <string>
 #include <memory>
 #include <stdexcept>
 #include <cmath>
 
 #include <jsonrpccpp/client.h>
+#include <jsonrpccpp/server/connectors/httpserver.h>
 #include <jsonrpccpp/client/connectors/httpclient.h>
+#include <boost/program_options.hpp>
 
+#include "gen/abstractstubserver.h"
+#include "blur_api.h"
 
 using namespace jsonrpc;
 
@@ -46,9 +46,14 @@ public:
   virtual std::string methodWithoutParameters();
 };
 
+std::string username;
+std::string password;
+std::string host;
+int port;
+
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
-    : AbstractStubServer(connector, type), m_blur_api(BlurAPI("user","password","127.0.0.1", 21111)) {}
+    : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, host, port)) {}
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 
@@ -155,14 +160,74 @@ Json::Value MyStubServer::buildObject(const std::string &name, int age) {
 
 std::string MyStubServer::methodWithoutParameters() { return "Test"; }
 
-int main() {
+int main(int ac, char** av) {
+
+  try {
+
+    boost::program_options::options_description desc("Supported command line options are: ");
+    desc.add_options()
+      ("help", "Show help text for server startup flags")
+      ("host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --host=\"127.0.0.1\")")
+      ("port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)")
+      ("username", boost::program_options::value<std::string>(), "Username for blur daemon rpc login \n (Example: --user=\"username\")")
+      ("password", boost::program_options::value<std::string>(), "Password for blur daemon rpc login \n (Example: --password=\"password\")");
+
+    boost::program_options::variables_map vm;
+    boost::program_options::store(boost::program_options::parse_command_line(ac, av, desc), vm);
+    boost::program_options::notify(vm);
+
+    if(vm.count("help")) {
+      std::cout << desc << std::endl;
+      return 0;
+    }
+
+    if (vm.count("host")) {
+      std::cout << "Host address set to " << vm["host"].as<std::string>() << ", for blur daemon." << std::endl;
+      host = vm["host"].as<std::string>();
+    } else {
+      std::cout << "No host provided, assuming localhost..." << std::endl;
+      host = "127.0.0.1";
+    }
+
+    if (vm.count("port")) {
+      std::cout << "Port set to " << std::to_string(vm["port"].as<int>()) << ", for blur daemon..." << std::endl;
+      port = vm["port"].as<int>();
+    } else {
+      std::cout << "ERROR: No port number provided for blur daemon... Please use \"--port\" startup flag to specify." << std:: endl;
+      return 1;
+    }
+
+    if (vm.count("username")) {
+      username = vm["username"].as<std::string>();
+      if (vm.count("password") == 0) {
+        std::cout << "ERROR: Username provided for blur daemon RPC login, but no password!" << std::endl;
+        return 1;
+      } else {
+        password = vm["password"].as<std::string>();
+      }
+    }
+
+    if (vm.count("password")) {
+      password = vm["password"].as<std::string>();
+      if (vm.count("username") == 0) {
+        std::cout << "ERROR: Password provided for blur daemon RPC login, but no username!" << std::endl;
+        return 1;
+      } else {
+        username = vm["username"].as<std::string>();
+      }
+    }
+  } catch (std::exception& e) {
+    std::cout << "ERROR: Exception when parsing program options: " << e.what() << std::endl;
+    return 1;
+  }
+
   HttpServer httpserver(8383);
 
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
 
   s.StartListening();
-  std::cout << "Hit enter to stop the server" << std::endl;
+  std::cout << std::endl << "Hit enter to stop the server" << std::endl;
   getchar();
   s.StopListening();
 

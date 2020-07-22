@@ -22,7 +22,6 @@
 
 
 using namespace jsonrpc;
-using namespace std;
 
 namespace jsonrpc { class HttpClient; class Client; }
 
@@ -51,13 +50,13 @@ MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
     : AbstractStubServer(connector, type), m_blur_api(BlurAPI("user","password","127.0.0.1", 21111)) {}
 
-void MyStubServer::notifyServer() { cout << "Server got notified" << endl; }
+void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 
 /*Json::Value sendcommand(const std::string& command, const Json::Value& params)
 {
 };*/
 
-string MyStubServer::sayHello(const string &name) {
+std::string MyStubServer::sayHello(const std::string &name) {
   if (name == "")
     throw JsonRpcException(-32100, "Name was empty");
   return "Hello " + name;
@@ -100,7 +99,7 @@ double MyStubServer::addNumbers2(double param1, double param2) {
   return param1 + param2;
 }
 
-bool MyStubServer::isEqual(const string &str1, const string &str2) {
+bool MyStubServer::isEqual(const std::string &str1, const std::string &str2) {
   return str1 == str2;
 }
 
@@ -147,14 +146,14 @@ Json::Value MyStubServer::calculate(const Json::Value& args) {
   return result;
 }
 
-Json::Value MyStubServer::buildObject(const string &name, int age) {
+Json::Value MyStubServer::buildObject(const std::string &name, int age) {
   Json::Value result;
   result["name"] = name;
   result["year"] = age;
   return result;
 }
 
-string MyStubServer::methodWithoutParameters() { return "Test"; }
+std::string MyStubServer::methodWithoutParameters() { return "Test"; }
 
 int main() {
   HttpServer httpserver(8383);
@@ -163,7 +162,7 @@ int main() {
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
 
   s.StartListening();
-  cout << "Hit enter to stop the server" << endl;
+  std::cout << "Hit enter to stop the server" << std::endl;
   getchar();
   s.StopListening();
 

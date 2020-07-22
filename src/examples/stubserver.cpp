@@ -30,14 +30,6 @@ class MyStubServer : public AbstractStubServer, public BlurAPI {
 public:
   MyStubServer(AbstractServerConnector &connector, serverVersion_t type);
 
-  std::string username = "user";
-  std::string password = "password";
-  std::string host = "127.0.0.1";
-  int port = 21111;
-  int httpTimeout = 500;
-
-  void connect_blur_api(BlurAPI&);
-
   BlurAPI m_blur_api;
   virtual void notifyServer();
   virtual std::string sayHello(const std::string &name);
@@ -162,10 +154,6 @@ Json::Value MyStubServer::buildObject(const string &name, int age) {
   return result;
 }
 
-void MyStubServer::connect_blur_api(BlurAPI& blur) {
-  m_blur_api = blur;
-}
-
 string MyStubServer::methodWithoutParameters() { return "Test"; }
 
 int main() {
@@ -173,8 +161,6 @@ int main() {
 
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)
-
-  s.connect_blur_api(s.m_blur_api);
 
   s.StartListening();
   cout << "Hit enter to stop the server" << endl;

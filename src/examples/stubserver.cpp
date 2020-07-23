@@ -168,9 +168,9 @@ int main(int ac, char** av) {
     boost::program_options::options_description desc("Supported command line options are");
     desc.add_options()
       ("help", "Show help text for server startup flags")
-      ("blur-host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --host=\"127.0.0.1\")")
-      ("blur-port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)")
-      ("api-port", boost::program_options::value<int>(), "Port for communcation with blurapiserver \n (Example: --port=8383)");
+      ("blur-host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --blur-host=\"127.0.0.1\")")
+      ("blur-port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --blur-port=52542)")
+      ("api-port", boost::program_options::value<int>(), "Port for communcation with blurapi stubserver \n (Example: --api-port=8383)");
 /*      ("username", boost::program_options::value<std::string>(), "Username for blur daemon rpc login \n (Example: --user=\"username\")")
       ("password", boost::program_options::value<std::string>(), "Password for blur daemon rpc login \n (Example: --password=\"password\")");*/
 

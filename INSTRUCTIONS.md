@@ -6,11 +6,11 @@
 Supported command line options are:
   --help                Show help text for server startup flags
   --blur-host arg       Host address for blur daemon 
-                         (Example: --host="127.0.0.1")
+                         (Example: --blur-host="127.0.0.1")
   --blur-port arg       Port for communcation with blur daemon 
-                         (Example: --port=52542)
-  --api-port arg        Port for communcation with blurapiserver 
-                         (Example: --port=8383)
+                         (Example: --blur-port=52542)
+  --api-port arg        Port for communcation with blurapi stubserver 
+                         (Example: --api-port=8383)
 ```
 
 # Compiling and Running the BlurAPI Server

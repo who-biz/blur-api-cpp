@@ -52,10 +52,6 @@ MyStubServer::MyStubServer(AbstractServerConnector &connector,
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 
-/*Json::Value sendcommand(const std::string& command, const Json::Value& params)
-{
-};*/
-
 std::string MyStubServer::sayHello(const std::string &name) {
   if (name == "")
     throw JsonRpcException(-32100, "Name was empty");
@@ -195,7 +191,7 @@ int main(int ac, char** av) {
 
     if (vm.count("api-port")) {
       std::cout << "Port set to " << std::to_string(vm["api-port"].as<int>()) << ", for blurapiserver..." << std::endl;
-      api_port = vm["port"].as<int>();
+      api_port = vm["api-port"].as<int>();
     } else {
       std::cout << "No api-port set, using default port 8383..." << std::endl;
       api_port = 8383;

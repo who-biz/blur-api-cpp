@@ -104,21 +104,12 @@ Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
 }
 
 BlurAPI::BlurAPI() {
-  std::string username = "user";
-  std::string password = "password";
-  std::string host = "127.0.0.1";
-  int port = 21111;
-
-  BlurAPI blur(username, password, host, port);
-}
-
-BlurAPI BlurAPI::get_blur_api() {
-  return *m_blur_api;
+    BlurAPI blur(username, password, blur_host, blur_port);
 }
 
 Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)
 {
-    BlurAPI blur("user","password","127.0.0.1",21111);
+    BlurAPI blur(username, password, blur_host, blur_port);
     Json::Value result;
     try {
       result = client->CallMethod(command, params);

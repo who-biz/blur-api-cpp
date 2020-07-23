@@ -3,6 +3,12 @@
 
 namespace jsonrpc { class HttpClient; class Client; }
 
+std::string username;
+std::string password;
+std::string blur_host;
+int blur_port;
+int api_port;
+
 class BlurAPI
 {
 
@@ -20,7 +26,6 @@ public:
     Json::Value get_notarization_data();
     Json::Value getblockhash(int const& height);
     Json::Value calc_MoM(int const& height, int const& MoMdepth);
-    BlurAPI get_blur_api();
     BlurAPI();
     ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);

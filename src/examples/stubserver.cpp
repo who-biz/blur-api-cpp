@@ -46,12 +46,6 @@ public:
   virtual std::string methodWithoutParameters();
 };
 
-std::string username;
-std::string password;
-std::string blur_host;
-int blur_port;
-int api_port;
-
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
     : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, blur_host, blur_port)) {}

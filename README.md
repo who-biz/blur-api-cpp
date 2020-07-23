@@ -5,7 +5,7 @@
 
 **As a result, THE README BELOW is a direct copy of that from cinemast/libjson-rpc-cpp**.
 
-**Please see <a href="https://github.com/who-biz/blur-api-cpp/blob/master/INSTRUCTIONS.md">Instructions.md for information on compiling this library & the BlurAPI stub server</a>**.
+**Please see <a href="https://github.com/who-biz/blur-api-cpp/blob/master/INSTRUCTIONS.md">INSTRUCTIONS.md for information on compiling this library & the BlurAPI stub server</a>**.
 
 
 ---

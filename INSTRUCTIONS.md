@@ -1,4 +1,4 @@
-# Supported Command-Line Options for BlurAPI Sever
+# Supported Command-Line Options for BlurAPI Server
 
 ```
 ./blurapiserver --help

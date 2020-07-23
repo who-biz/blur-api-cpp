@@ -48,12 +48,13 @@ public:
 
 std::string username;
 std::string password;
-std::string host;
-int port;
+std::string blur_host;
+int blur_port;
+int api_port;
 
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
-    : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, host, port)) {}
+    : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, blur_host, blur_port)) {}
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 
@@ -164,11 +165,12 @@ int main(int ac, char** av) {
 
   try {
 
-    boost::program_options::options_description desc("Supported command line options are: ");
+    boost::program_options::options_description desc("Supported command line options are");
     desc.add_options()
       ("help", "Show help text for server startup flags")
-      ("host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --host=\"127.0.0.1\")")
-      ("port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)");
+      ("blur-host", boost::program_options::value<std::string>(), "Host address for blur daemon \n (Example: --host=\"127.0.0.1\")")
+      ("blur-port", boost::program_options::value<int>(), "Port for communcation with blur daemon \n (Example: --port=52542)")
+      ("api-port", boost::program_options::value<int>(), "Port for communcation with blurapiserver \n (Example: --port=8383)");
 /*      ("username", boost::program_options::value<std::string>(), "Username for blur daemon rpc login \n (Example: --user=\"username\")")
       ("password", boost::program_options::value<std::string>(), "Password for blur daemon rpc login \n (Example: --password=\"password\")");*/
 
@@ -181,20 +183,28 @@ int main(int ac, char** av) {
       return 0;
     }
 
-    if (vm.count("host")) {
-      std::cout << "Host address set to " << vm["host"].as<std::string>() << ", for blur daemon." << std::endl;
-      host = vm["host"].as<std::string>();
+    if (vm.count("blur-host")) {
+      std::cout << "Host address set to " << vm["blur-host"].as<std::string>() << ", for blur daemon." << std::endl;
+      blur_host = vm["blur-host"].as<std::string>();
     } else {
       std::cout << "No host provided, assuming localhost..." << std::endl;
-      host = "127.0.0.1";
+      blur_host = "127.0.0.1";
     }
 
-    if (vm.count("port")) {
-      std::cout << "Port set to " << std::to_string(vm["port"].as<int>()) << ", for blur daemon..." << std::endl;
-      port = vm["port"].as<int>();
+    if (vm.count("blur-port")) {
+      std::cout << "Port set to " << std::to_string(vm["blur-port"].as<int>()) << ", for blur daemon..." << std::endl;
+      blur_port = vm["blur-port"].as<int>();
     } else {
       std::cout << "ERROR: No port number provided for blur daemon... Please use \"--port\" startup flag to specify." << std:: endl;
       return 1;
+    }
+
+    if (vm.count("api-port")) {
+      std::cout << "Port set to " << std::to_string(vm["api-port"].as<int>()) << ", for blurapiserver..." << std::endl;
+      api_port = vm["port"].as<int>();
+    } else {
+      std::cout << "No api-port set, using default port 8383..." << std::endl;
+      api_port = 8383;
     }
 
 /*    if (vm.count("username")) {
@@ -222,7 +232,7 @@ int main(int ac, char** av) {
     return 1;
   }
 
-  HttpServer httpserver(8383);
+  HttpServer httpserver(api_port);
 
   MyStubServer s(httpserver,
                  JSONRPC_SERVER_V1V2); // hybrid server (json-rpc 1.0 & 2.0)

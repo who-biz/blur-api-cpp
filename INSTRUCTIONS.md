@@ -1,3 +1,18 @@
+# Supported Command-Line Options for BlurAPI Sever
+
+```
+./blurapiserver --help
+
+Supported command line options are:
+  --help                Show help text for server startup flags
+  --blur-host arg       Host address for blur daemon 
+                         (Example: --host="127.0.0.1")
+  --blur-port arg       Port for communcation with blur daemon 
+                         (Example: --port=52542)
+  --api-port arg        Port for communcation with blurapiserver 
+                         (Example: --port=8383)
+```
+
 # Compiling and Running the BlurAPI Server
 
 **First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev`
@@ -11,7 +26,7 @@
 *Note: You may specify* `-DCMAKE_BUILD_TYPE=Debug`*, to enable prettyprinted stack traces, courtesy of <a href="https://github.com/bombela/backward-cpp">bombela/backward-cpp</a>, but you will need to install both the* `libdwarf-dev libelf-dev` *packages.*
 
 
-3. Start the BlurAPI server, including `--port` startup flag (this should be the port your Blur daemon will be running on): `./bin/blurapiserver --port=21111`
+3. Start the BlurAPI server, including `--blur-port` startup flag (this should be the port your Blur daemon will be running on): `./bin/blurapiserver --blur-port=21111`
 4. Launch the Blur Network daemon with the following options: `./blurd --testnet`
 
 

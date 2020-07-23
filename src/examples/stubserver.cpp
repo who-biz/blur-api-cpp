@@ -31,19 +31,12 @@ public:
 
   BlurAPI m_blur_api;
   virtual void notifyServer();
-  virtual std::string sayHello(const std::string &name);
   virtual Json::Value getblockchaininfo();
   virtual Json::Value get_notarization_data();
   virtual Json::Value validateaddress(std::string const& address);
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
   virtual Json::Value calc_MoM(int const height, int const MoMdepth);
-  virtual int addNumbers(int param1, int param2);
-  virtual double addNumbers2(double param1, double param2);
-  virtual Json::Value calculate(const Json::Value& args);
-  virtual bool isEqual(const std::string &str1, const std::string &str2);
-  virtual Json::Value buildObject(const std::string &name, int age);
-  virtual std::string methodWithoutParameters();
 };
 
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
@@ -51,12 +44,6 @@ MyStubServer::MyStubServer(AbstractServerConnector &connector,
     : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, blur_host, blur_port)) {}
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
-
-std::string MyStubServer::sayHello(const std::string &name) {
-  if (name == "")
-    throw JsonRpcException(-32100, "Name was empty");
-  return "Hello " + name;
-}
 
 Json::Value MyStubServer::getblockchaininfo() {
   Json::Value result = m_blur_api.getblockchaininfo();
@@ -87,69 +74,6 @@ Json::Value MyStubServer::calc_MoM(int const height, int const MoMdepth) {
   Json::Value result = m_blur_api.calc_MoM(height, MoMdepth);
   return result;
 }
-
-int MyStubServer::addNumbers(int param1, int param2) { return param1 + param2; }
-
-
-double MyStubServer::addNumbers2(double param1, double param2) {
-  return param1 + param2;
-}
-
-bool MyStubServer::isEqual(const std::string &str1, const std::string &str2) {
-  return str1 == str2;
-}
-
-Json::Value MyStubServer::calculate(const Json::Value& args) {
-  Json::Value result;
-  if((args.isMember("arg1") && args["arg1"].isInt()) &&
-    (args.isMember("arg2") && args["arg2"].isInt()) &&
-    (args.isMember("operator") && args["operator"].isString()))
-  {
-    int calculated = 0;
-
-    switch(args["operator"].asString()[0])
-    {
-      case '+':
-      {
-        calculated = args["arg1"].asInt() + args["arg2"].asInt();
-        break;
-      }
-      case '-':
-      {
-        calculated = args["arg1"].asInt() - args["arg2"].asInt();
-        break;
-      }
-      case '*':
-      {
-        calculated = args["arg1"].asInt() * args["arg2"].asInt();
-        break;
-      }
-      case '/':
-      {
-        if(args["arg2"].asInt() != 0)
-        {
-          calculated = args["arg1"].asInt() / args["arg2"].asInt();
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  
-    result.append(calculated);
-  }
-
-  return result;
-}
-
-Json::Value MyStubServer::buildObject(const std::string &name, int age) {
-  Json::Value result;
-  result["name"] = name;
-  result["year"] = age;
-  return result;
-}
-
-std::string MyStubServer::methodWithoutParameters() { return "Test"; }
 
 int main(int ac, char** av) {
 

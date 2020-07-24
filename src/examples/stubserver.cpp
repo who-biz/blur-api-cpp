@@ -29,7 +29,7 @@ class MyStubServer : public AbstractStubServer, public BlurAPI {
 public:
   MyStubServer(AbstractServerConnector &connector, serverVersion_t type);
 
-  BlurAPI m_blur_api;
+  BlurAPI* m_blur_api;
   virtual void notifyServer();
   virtual Json::Value getblockchaininfo();
   virtual Json::Value get_notarization_data();
@@ -37,41 +37,44 @@ public:
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
   virtual Json::Value calc_MoM(int const height, int const MoMdepth);
+  virtual ~MyStubServer();
 };
 
 MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
-    : AbstractStubServer(connector, type), m_blur_api(BlurAPI(username, password, blur_host, blur_port)) {}
+    : AbstractStubServer(connector, type), m_blur_api(new BlurAPI(username, password, blur_host, blur_port)) {}
+
+MyStubServer::~MyStubServer() { }
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 
 Json::Value MyStubServer::getblockchaininfo() {
-  Json::Value result = m_blur_api.getblockchaininfo();
+  Json::Value result = m_blur_api->getblockchaininfo();
   return result;
 }
 
 Json::Value MyStubServer::get_notarization_data() {
-  Json::Value result = m_blur_api.get_notarization_data();
+  Json::Value result = m_blur_api->get_notarization_data();
   return result;
 }
 
 Json::Value MyStubServer::validateaddress(std::string const& address) {
-  Json::Value result = m_blur_api.validateaddress(address);
+  Json::Value result = m_blur_api->validateaddress(address);
   return result;
 }
 
 Json::Value MyStubServer::getbestblockhash() {
-  Json::Value result = m_blur_api.getbestblockhash();
+  Json::Value result = m_blur_api->getbestblockhash();
   return result;
 }
 
 Json::Value MyStubServer::getblockhash(int const height) {
-  Json::Value result = m_blur_api.getblockhash(height);
+  Json::Value result = m_blur_api->getblockhash(height);
   return result;
 }
 
 Json::Value MyStubServer::calc_MoM(int const height, int const MoMdepth) {
-  Json::Value result = m_blur_api.calc_MoM(height, MoMdepth);
+  Json::Value result = m_blur_api->calc_MoM(height, MoMdepth);
   return result;
 }
 

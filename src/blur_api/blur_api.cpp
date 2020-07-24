@@ -109,7 +109,6 @@ BlurAPI::BlurAPI() {
 
 Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)
 {
-    BlurAPI blur(username, password, blur_host, blur_port);
     Json::Value result;
     try {
       result = client->CallMethod(command, params);

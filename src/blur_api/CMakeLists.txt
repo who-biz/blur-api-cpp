@@ -11,12 +11,12 @@ SET_TARGET_PROPERTIES(blurapi_static PROPERTIES OUTPUT_NAME blurapi)
 
 # Link the library with json-rpc-cpp libs
 TARGET_LINK_LIBRARIES(blurapi
-                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-common.so
-                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-client.so)
+                        jsonrpccommon
+                        jsonrpcclient)
 
 TARGET_LINK_LIBRARIES(blurapi_static
-                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-common.a
-                        ${CMAKE_BINARY_DIR}/lib/libjsonrpccpp-client.a)
+                        jsonrpccommon
+                        jsonrpcclient)
 
 # Set version settings
 SET(VERSION_STRING ${MAJOR_VERSION}.${MINOR_VERSION}.${PATCH_VERSION})

@@ -1,0 +1,21 @@
+name: blur-api-cpp CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-18.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install-dependencies
+      run: sudo apt install libjsoncpp-dev curl libboost-program-options-dev libmicrohttpd-dev libargtable2-dev libcurl4-openssl-dev
+    - name: libjson-rpc-cpp build
+      run: git clone https://github.com/cinemast/libjson-rpc-cpp.git && cd libjson-rpc-cpp && mkdir build && cd build && cmake -DREDIS_SERVER=NO -DREDIS_CLIENT=NO .. && make && sudo make install
+    - name: make
+      run: mkdir build && cd build && cmake .. && make

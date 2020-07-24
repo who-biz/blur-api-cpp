@@ -44,7 +44,7 @@ MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
     : AbstractStubServer(connector, type), m_blur_api(new BlurAPI(username, password, blur_host, blur_port)) {}
 
-MyStubServer::~MyStubServer() { }
+MyStubServer::~MyStubServer() { delete m_blur_api; }
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 

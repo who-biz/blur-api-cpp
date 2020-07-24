@@ -112,7 +112,7 @@ int main(int ac, char** av) {
       std::cout << "Port set to " << std::to_string(vm["blur-port"].as<int>()) << ", for blur daemon..." << std::endl;
       blur_port = vm["blur-port"].as<int>();
     } else {
-      std::cout << "ERROR: No port number provided for blur daemon... Please use \"--port\" startup flag to specify." << std:: endl;
+      std::cout << "ERROR: No port number provided for blur daemon... Please use \"--blur-port\" startup flag to specify." << std:: endl;
       return 1;
     }
 

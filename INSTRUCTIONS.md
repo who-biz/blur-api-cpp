@@ -15,7 +15,7 @@ Supported command line options are:
 
 # Compiling and Running the BlurAPI Server
 
-**First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev`
+**First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev libmicrohttpd-dev libargtable2-dev`
 
 **Then, perform the following steps to compile and run the BlurAPI server:**
 

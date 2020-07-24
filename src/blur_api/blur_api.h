@@ -1,3 +1,21 @@
+/**
+ * @file    bitcoinapi.h
+ * @author  Krzysztof Okupski
+ * @date    29.10.2014
+ * @version 1.0
+ *
+ * Declaration of a C++ wrapper for communication with
+ * a running instance of Bitcoin daemon over JSON-RPC.
+ ******************************************************
+ * @file    blur_api.h
+ * @author  Blur Network <contact@blur.cash>
+ * @date    03.07.2020
+ * @license See attached LICENSE.txt
+ *
+ * Reimplementation of bitcoin-api-cpp, for communication
+ * with a running instance of the Blur Network daemon
+ * over JSON-RPC.
+ *****************************************************/
 #include <string>
 #include "exception.h"
 
@@ -17,7 +35,6 @@ private:
     jsonrpc::Client * client;
 
 public:
-    /* === Constructor and Destructor === */
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 500);
     BlurAPI* m_blur_api;
     Json::Value getblockchaininfo();
@@ -30,5 +47,3 @@ public:
     ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);
 };
-
-BlurAPI blur_api_init();

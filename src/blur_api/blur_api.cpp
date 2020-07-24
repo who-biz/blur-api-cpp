@@ -6,7 +6,16 @@
  *
  * Implementation of a C++ wrapper for communication with
  * a running instance of Bitcoin daemon over JSON-RPC.
- */
+ ************************************************************************
+ * @file    blur_api.cpp
+ * @author  Blur Network <contact@blur.cash>
+ * @date    03.07.2020
+ * @license See attached LICENSE.txt
+ *
+ * Reimplementation of bitcoin-api-cpp, for communication
+ * with a running instance of the Blur Network daemon
+ * over JSON-RPC.
+ ***********************************************************************/
 
 #include "blur_api.h"
 
@@ -18,8 +27,8 @@
 #include <jsonrpccpp/client.h>
 #include <jsonrpccpp/client/connectors/httpclient.h>
 
-
-BlurAPI::BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout)
+BlurAPI::BlurAPI(const std::string& user, const std::string& password,
+                 const std::string& host, int port, int httpTimeout)
 : httpClient(new jsonrpc::HttpClient("http://" + host + ":" + std::to_string(port) + "/json_rpc")),
   client(new jsonrpc::Client(*httpClient, jsonrpc::JSONRPC_CLIENT_V2))
 {

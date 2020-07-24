@@ -5,7 +5,12 @@
  * @date    02.05.2013
  * @author  Peter Spiess-Knafl <dev@spiessknafl.at>
  * @license See attached LICENSE.txt
+ ************************************************************************
+ * @date    07.03.2020
+ * @author  Blur Network <contact@blur.cash>
+ * @license See attached LICENSE.txt
  ************************************************************************/
+
 #include <iostream>
 #include <stdio.h>
 #include <string>

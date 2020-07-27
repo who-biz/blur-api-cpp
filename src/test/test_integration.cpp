@@ -60,6 +60,13 @@ public:
     return result;
   }
 
+  virtual Json::Value getinfo() {
+    Json::Value result;
+    result["status"] = "OK";
+    result["height"] = 200;
+    return result;
+  }
+
   virtual Json::Value get_notarization_data() {
     Json::Value result;
     result["assetchains_symbol"] = "BLUR";

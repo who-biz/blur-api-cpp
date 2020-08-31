@@ -17,6 +17,14 @@ Supported command line options are:
 
 **First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev libmicrohttpd-dev libargtable2-dev cmake`
 
+**Next, compile and install `libjson-rpc-cpp`:**
+
+```
+git clone git clone https://github.com/cinemast/libjson-rpc-cpp.git
+mkdir build && cd build && cmake .. && make -j4
+sudo make install
+```
+
 **Then, perform the following steps to compile and run the BlurAPI server:**
 
 1. Clone this repo, and move into directory: `git clone https://github.com/who-biz/blur-api-cpp && cd blur-api-cpp`

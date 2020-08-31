@@ -27,7 +27,7 @@ sudo make install
 
 **Then, perform the following steps to compile and run the BlurAPI server:**
 
-1. Clone this repo, and move into directory: `git clone https://github.com/who-biz/blur-api-cpp && cd blur-api-cpp`
+1. Clone this repo, and move into directory: `git clone https://github.com/blur-network/blur-api-cpp && cd blur-api-cpp`
 2. Create build directory, and compile: `mkdir build && cd build && cmake .. && make`
 
 

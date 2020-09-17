@@ -154,6 +154,40 @@
         }
     },
     {
+        "name": "listunspent",
+        "params": [
+           1,
+           9999,
+           "address"
+        ],
+        "returns": [
+           {
+              "txid": "txid",
+              "vout": 51,
+              "address": "address",
+              "scriptPubKey": "xxxxxxxxxxx",
+              "amount": 1.25,
+              "confirmations": 25,
+              "redeemScript": "xxxxxxxxxxx",
+              "spendable": true,
+              "solvable": true,
+              "safe": true
+           },
+           {
+              "txid": "txid",
+              "vout": 51,
+              "address": "address",
+              "scriptPubKey": "xxxxxxxxxxx",
+              "amount": 1.25,
+              "confirmations": 25,
+              "redeemScript": "xxxxxxxxxxx",
+              "spendable": true,
+              "solvable": true,
+              "safe": true
+           }
+        ]
+    },
+    {
         "name": "notifyServer"
     }
 ]

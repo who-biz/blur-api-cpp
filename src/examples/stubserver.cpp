@@ -97,7 +97,11 @@ Json::Value MyStubServer::sendrawtransaction(std::string const& signedhex) {
 }
 
 Json::Value MyStubServer::listunspent(int const minconf, int const maxconf, std::string const& address) {
-  Json::Value result = m_blur_api->listunspent(minconf, maxconf, address);
+  Json::Value blurapi_result = m_blur_api->listunspent(minconf, maxconf, address);
+  Json::Value result, itemone, itemtwo;
+  for (const auto& each : blurapi_result["entries"]) {
+    result.append(each);
+  }
   return result;
 }
 

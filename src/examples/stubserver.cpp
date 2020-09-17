@@ -42,6 +42,7 @@ public:
   virtual Json::Value validateaddress(std::string const& address);
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
+  virtual Json::Value sendrawtransaction(std::string const& signedhex);
   virtual Json::Value calc_MoM(int const height, int const MoMdepth);
   virtual ~MyStubServer();
 };

@@ -125,6 +125,12 @@ public:
     return result;
   }
 
+  virtual Json::Value validateaddress(std::string const& address) {
+    result["hex"] = "xxxxxxxxxx";
+    result["status"] = "OK";
+    return result;
+  }
+
   virtual Json::Value getbestblockhash() {
     Json::Value result;
     result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";

@@ -112,6 +112,18 @@ Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
     return result;
 }
 
+Json::Value BlurAPI::sendrawtransaction(std::string const& signedhex)
+{
+    Json::Value result, params;
+    params.append(signedhex);
+    try {
+      result = sendcommand("sendrawtransaction", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
     BlurAPI blur(username, password, blur_host, blur_port);
 }

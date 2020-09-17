@@ -89,6 +89,11 @@ Json::Value MyStubServer::calc_MoM(int const height, int const MoMdepth) {
   return result;
 }
 
+Json::Value MyStubServer::sendrawtransaction(std::string const& signedhex) {
+  Json::Value result = m_blur_api->sendrawtransaction(signedhex);
+  return result;
+}
+
 int main(int ac, char** av) {
 
   try {

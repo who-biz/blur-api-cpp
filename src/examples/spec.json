@@ -40,6 +40,16 @@
         }
     },
     {
+        "name": "sendrawtransaction",
+        "params": [
+           "string"
+        ],        
+        "returns": {
+          "status": "String",
+          "hex": "xxxxxxxxxxxx"
+        }
+    }
+    {
         "name": "getinfo",
         "returns": {
            "status": "String",

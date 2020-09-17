@@ -43,7 +43,7 @@ public:
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
   virtual Json::Value sendrawtransaction(std::string const& signedhex);
-  virtual Json::Value listunspent(Json::Value const& addresses, int const minconf, int const maxconf);
+  virtual Json::Value listunspent(int const minconf, int const maxconf, Json::Value const& addresses);
   virtual Json::Value calc_MoM(int const height, int const MoMdepth);
   virtual ~MyStubServer();
 };
@@ -96,7 +96,7 @@ Json::Value MyStubServer::sendrawtransaction(std::string const& signedhex) {
   return result;
 }
 
-Json::Value MyStubServer::listunspent(Json::Value const& addresses, int const minconf, int const maxconf) {
+Json::Value MyStubServer::listunspent(int const minconf, int const maxconf, Json::Value const& addresses) {
   std::list<std::string> addr_list;
   for (const auto & each: addresses) {
     addr_list.push_back(each.asString());

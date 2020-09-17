@@ -133,7 +133,7 @@ public:
     return result;
   }
 
-  virtual Json::Value listunspent(Json::Value const& addresses, int const minconf, int const maxconf) {
+  virtual Json::Value listunspent(int const minconf, int const maxconf, Json::Value const& addresses) {
     Json::Value result, itemone, itemtwo, params;
     params["minconf"] = minconf;
     params["maxconf"] = maxconf;

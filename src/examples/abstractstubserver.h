@@ -20,6 +20,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
             this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getbestblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockhash", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::getblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("calc_MoM", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::calc_MoMI);
+            this->bindAndAddMethod(jsonrpc::Procedure("listunspent", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_ARRAY, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER,"param03",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::listunspentI);
             this->bindAndAddNotification(jsonrpc::Procedure("notifyServer", jsonrpc::PARAMS_BY_NAME,  NULL), &AbstractStubServer::notifyServerI);
         }
 
@@ -55,6 +56,10 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         {
             response = this->calc_MoM(request[0u].asInt(), request[1u].asInt());
         }
+        inline virtual void listunspentI(const Json::Value &request, Json::Value &response)
+        {
+            response = this->listunspent(request[0u].asInt(), request[1u].asInt(), request[2u].asString());
+        }
         inline virtual void notifyServerI(const Json::Value &/*request*/)
         {
             this->notifyServer();
@@ -67,6 +72,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         virtual Json::Value getbestblockhash() = 0;
         virtual Json::Value getblockhash(int param01) = 0;
         virtual Json::Value calc_MoM(int param01, int param02) = 0;
+        virtual Json::Value listunspent(int param01, int param02, const std::string& param03) = 0;
         virtual void notifyServer() = 0;
 };
 

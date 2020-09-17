@@ -133,6 +133,18 @@ public:
     return result;
   }
 
+  virtual Json::Value listunspent(int const minconf, int const maxconf, std::string const& address) {
+    Json::Value result, itemone, itemtwo, params;
+    params.append(minconf);
+    params.append(maxconf);
+    params.append(address);
+    itemone["txid"] = "xxxxxxxxxx";
+    itemtwo["txid"] = "xxxxxxxxxx";
+    result.append(itemone);
+    result.append(itemtwo);
+    return result;
+  }
+
   virtual Json::Value getbestblockhash() {
     Json::Value result;
     result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";

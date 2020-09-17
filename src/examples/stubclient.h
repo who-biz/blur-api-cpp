@@ -12,21 +12,31 @@ class StubClient : public jsonrpc::Client
     public:
         StubClient(jsonrpc::IClientConnector &conn, jsonrpc::clientVersion_t type = jsonrpc::JSONRPC_CLIENT_V2) : jsonrpc::Client(conn, type) {}
 
-        std::string sayHello(const std::string& name) 
-        {
-            Json::Value p;
-            p["name"] = name;
-            Json::Value result = this->CallMethod("sayHello",p);
-            if (result.isString())
-                return result.asString();
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
-        }
         Json::Value getblockchaininfo() 
         {
             Json::Value p;
             p = Json::nullValue;
             Json::Value result = this->CallMethod("getblockchaininfo",p);
+            if (result.isObject())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
+        Json::Value sendrawtransaction(const std::string& param01) 
+        {
+            Json::Value p;
+            p.append(param01);
+            Json::Value result = this->CallMethod("sendrawtransaction",p);
+            if (result.isObject())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
+        Json::Value getinfo() 
+        {
+            Json::Value p;
+            p = Json::nullValue;
+            Json::Value result = this->CallMethod("getinfo",p);
             if (result.isObject())
                 return result;
             else
@@ -83,65 +93,23 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
+        Json::Value listunspent(int param01, int param02, const std::string& param03) 
+        {
+            Json::Value p;
+            p.append(param01);
+            p.append(param02);
+            p.append(param03);
+            Json::Value result = this->CallMethod("listunspent",p);
+            if (result.isArray())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
         void notifyServer() 
         {
             Json::Value p;
             p = Json::nullValue;
             this->CallNotification("notifyServer",p);
-        }
-        int addNumbers(int param01, int param02) 
-        {
-            Json::Value p;
-            p.append(param01);
-            p.append(param02);
-            Json::Value result = this->CallMethod("addNumbers",p);
-            if (result.isIntegral())
-                return result.asInt();
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
-        }
-        double addNumbers2(double param01, double param02) 
-        {
-            Json::Value p;
-            p.append(param01);
-            p.append(param02);
-            Json::Value result = this->CallMethod("addNumbers2",p);
-            if (result.isDouble())
-                return result.asDouble();
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
-        }
-        bool isEqual(const std::string& param01, const std::string& param02) 
-        {
-            Json::Value p;
-            p.append(param01);
-            p.append(param02);
-            Json::Value result = this->CallMethod("isEqual",p);
-            if (result.isBool())
-                return result.asBool();
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
-        }
-        Json::Value buildObject(const std::string& param01, int param02) 
-        {
-            Json::Value p;
-            p.append(param01);
-            p.append(param02);
-            Json::Value result = this->CallMethod("buildObject",p);
-            if (result.isObject())
-                return result;
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
-        }
-        std::string methodWithoutParameters() 
-        {
-            Json::Value p;
-            p = Json::nullValue;
-            Json::Value result = this->CallMethod("methodWithoutParameters",p);
-            if (result.isString())
-                return result.asString();
-            else
-                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
 };
 

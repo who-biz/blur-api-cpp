@@ -43,6 +43,7 @@ public:
   virtual Json::Value getbestblockhash();
   virtual Json::Value getblockhash(int const height);
   virtual Json::Value sendrawtransaction(std::string const& signedhex);
+  virtual Json::Value listunspent(int const minconf, int const maxconf, std::string const& address);
   virtual Json::Value calc_MoM(int const height, int const MoMdepth);
   virtual ~MyStubServer();
 };
@@ -92,6 +93,11 @@ Json::Value MyStubServer::calc_MoM(int const height, int const MoMdepth) {
 
 Json::Value MyStubServer::sendrawtransaction(std::string const& signedhex) {
   Json::Value result = m_blur_api->sendrawtransaction(signedhex);
+  return result;
+}
+
+Json::Value MyStubServer::listunspent(int const minconf, int const maxconf, std::string const& address) {
+  Json::Value result = m_blur_api->listunspent(minconf, maxconf, address);
   return result;
 }
 

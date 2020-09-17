@@ -124,6 +124,22 @@ Json::Value BlurAPI::sendrawtransaction(std::string const& signedhex)
     return result;
 }
 
+Json::Value BlurAPI::listunspent(int const& minconf, int const& maxconf, std::string const& address)
+{ /* listunspent will not yet work, more changes necessary */
+    Json::Value result,params;
+    params.append(minconf);
+    params.append(maxconf);
+    params.append(address);
+    //TODO: input for addresses is a json array
+    // not sure if iguana queries more than single adddress at a time
+    try {
+      result = sendcommand("listunspent", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
     BlurAPI blur(username, password, blur_host, blur_port);
 }

@@ -12,28 +12,28 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
     public:
         AbstractStubServer(jsonrpc::AbstractServerConnector &conn, jsonrpc::serverVersion_t type = jsonrpc::JSONRPC_SERVER_V2) : jsonrpc::AbstractServer<AbstractStubServer>(conn, type)
         {
-            this->bindAndAddMethod(jsonrpc::Procedure("sayHello", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_STRING, "name",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::sayHelloI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockchaininfo", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getblockchaininfoI);
+            this->bindAndAddMethod(jsonrpc::Procedure("sendrawtransaction", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::sendrawtransactionI);
+            this->bindAndAddMethod(jsonrpc::Procedure("getinfo", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getinfoI);
             this->bindAndAddMethod(jsonrpc::Procedure("get_notarization_data", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::get_notarization_dataI);
             this->bindAndAddMethod(jsonrpc::Procedure("validateaddress", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::validateaddressI);
             this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getbestblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockhash", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::getblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("calc_MoM", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::calc_MoMI);
             this->bindAndAddNotification(jsonrpc::Procedure("notifyServer", jsonrpc::PARAMS_BY_NAME,  NULL), &AbstractStubServer::notifyServerI);
-            this->bindAndAddMethod(jsonrpc::Procedure("addNumbers", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_INTEGER, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::addNumbersI);
-            this->bindAndAddMethod(jsonrpc::Procedure("addNumbers2", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_REAL, "param01",jsonrpc::JSON_REAL,"param02",jsonrpc::JSON_REAL, NULL), &AbstractStubServer::addNumbers2I);
-            this->bindAndAddMethod(jsonrpc::Procedure("isEqual", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_BOOLEAN, "param01",jsonrpc::JSON_STRING,"param02",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::isEqualI);
-            this->bindAndAddMethod(jsonrpc::Procedure("buildObject", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::buildObjectI);
-            this->bindAndAddMethod(jsonrpc::Procedure("methodWithoutParameters", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_STRING,  NULL), &AbstractStubServer::methodWithoutParametersI);
         }
 
-        inline virtual void sayHelloI(const Json::Value &request, Json::Value &response)
-        {
-            response = this->sayHello(request["name"].asString());
-        }
         inline virtual void getblockchaininfoI(const Json::Value &/*request*/, Json::Value &response)
         {
             response = this->getblockchaininfo();
+        }
+        inline virtual void sendrawtransactionI(const Json::Value &request, Json::Value &response)
+        {
+            response = this->sendrawtransaction(request[0u].asString());
+        }
+        inline virtual void getinfoI(const Json::Value &/*request*/, Json::Value &response)
+        {
+            response = this->getinfo();
         }
         inline virtual void get_notarization_dataI(const Json::Value &/*request*/, Json::Value &response)
         {
@@ -59,39 +59,15 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         {
             this->notifyServer();
         }
-        inline virtual void addNumbersI(const Json::Value &request, Json::Value &response)
-        {
-            response = this->addNumbers(request[0u].asInt(), request[1u].asInt());
-        }
-        inline virtual void addNumbers2I(const Json::Value &request, Json::Value &response)
-        {
-            response = this->addNumbers2(request[0u].asDouble(), request[1u].asDouble());
-        }
-        inline virtual void isEqualI(const Json::Value &request, Json::Value &response)
-        {
-            response = this->isEqual(request[0u].asString(), request[1u].asString());
-        }
-        inline virtual void buildObjectI(const Json::Value &request, Json::Value &response)
-        {
-            response = this->buildObject(request[0u].asString(), request[1u].asInt());
-        }
-        inline virtual void methodWithoutParametersI(const Json::Value &/*request*/, Json::Value &response)
-        {
-            response = this->methodWithoutParameters();
-        }
-        virtual std::string sayHello(const std::string& name) = 0;
         virtual Json::Value getblockchaininfo() = 0;
+        virtual Json::Value sendrawtransaction(const std::string& param01) = 0;
+        virtual Json::Value getinfo() = 0;
         virtual Json::Value get_notarization_data() = 0;
         virtual Json::Value validateaddress(const std::string& param01) = 0;
         virtual Json::Value getbestblockhash() = 0;
         virtual Json::Value getblockhash(int param01) = 0;
         virtual Json::Value calc_MoM(int param01, int param02) = 0;
         virtual void notifyServer() = 0;
-        virtual int addNumbers(int param01, int param02) = 0;
-        virtual double addNumbers2(double param01, double param02) = 0;
-        virtual bool isEqual(const std::string& param01, const std::string& param02) = 0;
-        virtual Json::Value buildObject(const std::string& param01, int param02) = 0;
-        virtual std::string methodWithoutParameters() = 0;
 };
 
 #endif //JSONRPC_CPP_STUB_ABSTRACTSTUBSERVER_H_

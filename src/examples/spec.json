@@ -155,11 +155,11 @@
     },
     {
         "name": "listunspent",
-        "params": [
-           1,
-           9999,
-           "address"
-        ],
+        "params": {
+           "minconf": 1,
+           "maxconf": 99999,
+           "addresses": [ "address","address" ]
+        },
         "returns": [
            {
               "txid": "txid",

@@ -133,11 +133,13 @@ public:
     return result;
   }
 
-  virtual Json::Value listunspent(int const minconf, int const maxconf, std::string const& address) {
+  virtual Json::Value listunspent(Json::Value const& addresses, int const minconf, int const maxconf) {
     Json::Value result, itemone, itemtwo, params;
-    params.append(minconf);
-    params.append(maxconf);
-    params.append(address);
+    params["minconf"] = minconf;
+    params["maxconf"] = maxconf;
+    for (const auto& each: addresses) {
+      params["addresses"].append(each.asString());
+    }
     itemone["txid"] = "xxxxxxxxxx";
     itemtwo["txid"] = "xxxxxxxxxx";
     result.append(itemone);

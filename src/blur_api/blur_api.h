@@ -17,6 +17,7 @@
  * over JSON-RPC.
  *****************************************************/
 #include <string>
+#include <list>
 #include "exception.h"
 
 namespace jsonrpc { class HttpClient; class Client; }
@@ -44,7 +45,7 @@ public:
     Json::Value getblockhash(int const& height);
     Json::Value calc_MoM(int const& height, int const& MoMdepth);
     Json::Value sendrawtransaction(std::string const& signedhex);
-    Json::Value listunspent(int const& minconf, int const& maxconf, std::string const& address);
+    Json::Value listunspent(int const& minconf, int const& maxconf, std::list<std::string> const& address);
     BlurAPI();
     ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);

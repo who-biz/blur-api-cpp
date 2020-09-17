@@ -48,7 +48,7 @@
           "status": "String",
           "hex": "xxxxxxxxxxxx"
         }
-    }
+    },
     {
         "name": "getinfo",
         "returns": {

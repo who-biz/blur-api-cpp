@@ -36,7 +36,7 @@ private:
     jsonrpc::Client * client;
 
 public:
-    BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 500);
+    BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 5000);
     BlurAPI* m_blur_api;
     Json::Value getblockchaininfo();
     Json::Value validateaddress(std::string const& address);

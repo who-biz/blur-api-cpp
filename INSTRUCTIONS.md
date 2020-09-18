@@ -142,3 +142,18 @@ Response:
 ```
 {"error":null,"id":"curltest","result":{"assetchains_symbol":"BLUR","current_chain_hash":"b60bea9387bfbc24b59998762cff7a8b71de75728d29e7824c6cdb959d84decb","current_chain_height":3075,"current_chain_pow":"e93cd8caa74d386768672c33612f757ec8a798e782a67892b6d46f68dbc36604","embedded_btc_hash":"313031a1ed2dbe12a20706dff48d3dffb0e39d15e3e4ff936d01f091fb3b8556","notarizations_completed":7,"notarizations_merkle":"92fbf297fb1ba553f37a9bcaab93ba34b3bb352ae99a190852804a21a7e4a343","notarized_hash":"0873d25c15a0ec2e08af077113a939a07ee8d87caea3c13680d3ef18fcd0ba06","notarized_height":2939,"notarized_txid":"a85701183ace0baa3334c327ee3e871422615fa4f65e35df889ff4ad3aea4e13"}}
 ```
+
+---
+
+
+**Method: `listunspent`**
+
+```
+curl --data-binary '{"jsonrpc":"1.0", "id":"curltest", "method":"listunspent", "params":[1, 99999, ["RVJ1UYh4452z66Tu7yRGWsKY3zALGtYZ4hQroQAXfeiwkzw9naj48awDA9y2r"]]}' http://localhost:8383
+```
+
+Response:
+
+```
+{"error":null,"id":"curltest","result":[{"address":"RVJ1UYh4452z66Tu7yRGWsKY3zALGtYfqo","amount":100,"confirmations":1000,"redeemScript":"76a9140ba28b34ebd21d0b18e8753e71c2663c171bec9888ac","safe":true,"scriptPubKey":"76a9140ba28b34ebd21d0b18e8753e71c2663c171bec9888ac","solvable":true,"spendable":true,"txid":"2ff9dd22f0d5d3e99feb3abc9917c6a0b6afa9797696faf3d4bdb5e306597695","vout":1},{"address":"RQNvZ4hQroQAXfeiwkzw9naj48awDA9y2r","amount":100,"confirmations":1000,"redeemScript":"76a9140ba28b34ebd21d0b18e8753e71c2663c171bec9888ac","safe":true,"scriptPubKey":"76a9140ba28b34ebd21d0b18e8753e71c2663c171bec9888ac","solvable":true,"spendable":true,"txid":"2ff9dd22f0d5d3e99feb3abc9917c6a0b6afa9797696faf3d4bdb5e306597695","vout":1}]}
+```

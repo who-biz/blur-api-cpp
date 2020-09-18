@@ -43,10 +43,36 @@
         "name": "sendrawtransaction",
         "params": [
            "string"
-        ],        
+        ],
         "returns": {
           "status": "String",
           "hex": "xxxxxxxxxxxx"
+        }
+    },
+    {
+        "name": "signrawtransaction",
+        "params": [
+           "hexstring", [
+              [
+                 "txid",
+                 51,
+                 "scriptPubKey",
+                 "redeemScript",
+                 0.001000
+              ],
+              [
+                 "txid",
+                 51,
+                 "scriptPubKey",
+                 "redeemScript",
+                 0.001000
+              ]
+           ]
+        ],
+        "returns": {
+          "status": "String",
+          "hex": "xxxxxxxxxxxx",
+          "complete": true
         }
     },
     {

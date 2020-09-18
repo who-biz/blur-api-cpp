@@ -32,6 +32,17 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
+        Json::Value signrawtransaction(const std::string& param01, const Json::Value& param02) 
+        {
+            Json::Value p;
+            p.append(param01);
+            p.append(param02);
+            Json::Value result = this->CallMethod("signrawtransaction",p);
+            if (result.isObject())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
         Json::Value getinfo() 
         {
             Json::Value p;
@@ -93,7 +104,7 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        Json::Value listunspent(int param01, int param02, const std::string& param03) 
+        Json::Value listunspent(int param01, int param02, const Json::Value& param03) 
         {
             Json::Value p;
             p.append(param01);

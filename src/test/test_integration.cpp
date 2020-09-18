@@ -133,6 +133,23 @@ public:
     return result;
   }
 
+  virtual Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs) {
+    Json::Value result, params, item;
+    params["hexstring"] = hexstring;
+    for (const auto& each : prevtxs) {
+      item["txid"] = each[0u].asString();
+      item["vout"] = each[1u].asInt();
+      item["scriptPubKey"] = each[2u].asString();
+      item["redeemScript"] = each[3u].asString();
+      item["amount"] = each[4u].asFloat();
+      params["prevtxs"].append(item);
+    }
+    result["hex"] = "xxxxxxxxxxx";
+    result["status"] = "OK";
+    result["complete"] = true;
+    return result;
+  }
+
   virtual Json::Value listunspent(int const minconf, int const maxconf, Json::Value const& addresses) {
     Json::Value result, itemone, itemtwo, params;
     params["minconf"] = minconf;

@@ -140,6 +140,27 @@ Json::Value BlurAPI::listunspent(int const& minconf, int const& maxconf, std::li
     return result;
 }
 
+Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs)
+{
+    Json::Value result, params, item;
+    params["hexstring"] = hexstring;
+    for (const auto& each : prevtxs) {
+      item["txid"] = each[0u].asString();
+      item["vout"] = each[1u].asInt();
+      item["scriptPubKey"] = each[2u].asString();
+      item["redeemScript"] = each[3u].asString();
+      item["amount"] = each[4u].asFloat();
+      params["prevtxs"].append(item);
+    }
+
+    try {
+      result = sendcommand("btc_signrawtransaction", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
     BlurAPI blur(username, password, blur_host, blur_port);
 }

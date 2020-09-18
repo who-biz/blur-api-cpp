@@ -46,7 +46,7 @@ Json::Value BlurAPI::getblockchaininfo()
     Json::Value result, params;
 //    std::cout << "before sendcommand getblockchaininfo ------" << std::endl;
     try {
-      result = sendcommand("getblockchaininfo", params);
+      result = sendcommand("btc_getblockchaininfo", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -57,7 +57,7 @@ Json::Value BlurAPI::get_notarization_data()
 {
     Json::Value result, params;
     try {
-      result = sendcommand("get_notarization_data", params);
+      result = sendcommand("btc_get_notarization_data", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -69,7 +69,7 @@ Json::Value BlurAPI::validateaddress(std::string const& address)
     Json::Value result, params;
     params.append(address);
     try {
-      result = sendcommand("validateaddress", params);
+      result = sendcommand("btc_validateaddress", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -80,7 +80,7 @@ Json::Value BlurAPI::getbestblockhash()
 {
     Json::Value result, params;
     try {
-      result = sendcommand("getbestblockhash", params);
+      result = sendcommand("btc_getbestblockhash", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -92,7 +92,7 @@ Json::Value BlurAPI::getblockhash(int const& height)
     Json::Value result, params;
     params.append(height);
     try {
-      result = sendcommand("getblockhash", params);
+      result = sendcommand("btc_getblockhash", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -105,7 +105,7 @@ Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
     params.append(height);
     params.append(MoMdepth);
     try {
-      result = sendcommand("calc_MoM", params);
+      result = sendcommand("btc_calc_MoM", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -117,7 +117,7 @@ Json::Value BlurAPI::sendrawtransaction(std::string const& signedhex)
     Json::Value result, params;
     params.append(signedhex);
     try {
-      result = sendcommand("sendrawtransaction", params);
+      result = sendcommand("btc_sendrawtransaction", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }
@@ -133,7 +133,7 @@ Json::Value BlurAPI::listunspent(int const& minconf, int const& maxconf, std::li
       params["addresses"].append(each);
     }
     try {
-      result = sendcommand("listunspent", params);
+      result = sendcommand("btc_listunspent", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }

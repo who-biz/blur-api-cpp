@@ -149,7 +149,7 @@ Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Valu
       item["vout"] = each[1u].asInt();
       item["scriptPubKey"] = each[2u].asString();
       item["redeemScript"] = each[3u].asString();
-      item["amount"] = each[4u].asFloat();
+      item["amount"] = (each[4u].asFloat()*100000000);
       params["prevtxs"].append(item);
     }
 

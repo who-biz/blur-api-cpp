@@ -115,7 +115,7 @@ Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
 Json::Value BlurAPI::sendrawtransaction(std::string const& signedhex)
 {
     Json::Value result, params;
-    params.append(signedhex);
+    params["hexstring"] = signedhex;
     try {
       result = sendcommand("btc_sendrawtransaction", params);
     } catch (BlurException& error) {

@@ -174,5 +174,6 @@ Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& 
        BlurException error(e.GetCode(), e.GetMessage());
        throw error;
     }
+    printf("--  Called method: %s  --\n", command.c_str());
     return result;
 }

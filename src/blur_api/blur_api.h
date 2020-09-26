@@ -39,6 +39,7 @@ public:
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 5000);
     BlurAPI* m_blur_api;
     Json::Value getblockchaininfo();
+    Json::Value getblock(std::string const& blockhash);
     Json::Value validateaddress(std::string const& address);
     Json::Value getbestblockhash();
     Json::Value get_notarization_data();

@@ -44,9 +44,20 @@ BlurAPI::~BlurAPI()
 Json::Value BlurAPI::getblockchaininfo()
 {
     Json::Value result, params;
-//    std::cout << "before sendcommand getblockchaininfo ------" << std::endl;
     try {
       result = sendcommand("btc_getblockchaininfo", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
+Json::Value BlurAPI::getblock(std::string const& blockhash)
+{
+    Json::Value result, params;
+    params["blockhash"] = blockhash;
+    try {
+      result = sendcommand("btc_getblock", params);
     } catch (BlurException& error) {
       std::cerr << error.getMessage() << std::endl;
     }

@@ -40,6 +40,16 @@
         }
     },
     {
+        "name": "getblock",
+        "params": [
+           "string"
+        ],
+        "returns": {
+          "status": "String",
+          "data": "block"
+        }
+    },
+    {
         "name": "sendrawtransaction",
         "params": [
            "string"

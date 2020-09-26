@@ -22,6 +22,16 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
+        Json::Value getblock(const std::string& param01) 
+        {
+            Json::Value p;
+            p.append(param01);
+            Json::Value result = this->CallMethod("getblock",p);
+            if (result.isObject())
+                return result;
+            else
+                throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
+        }
         Json::Value sendrawtransaction(const std::string& param01) 
         {
             Json::Value p;

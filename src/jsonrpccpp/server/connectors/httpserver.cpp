@@ -169,6 +169,7 @@ int HttpServer::callback(void *cls, MHD_Connection *connection, const char *url,
   if (string("POST") == method) {
     if (*upload_data_size != 0) {
       client_connection->request.write(upload_data, *upload_data_size);
+      printf("---- request: %s\n", client_connection->request.str().c_str());
       *upload_data_size = 0;
       return MHD_YES;
     } else {
@@ -181,6 +182,7 @@ int HttpServer::callback(void *cls, MHD_Connection *connection, const char *url,
             "No client connection handler found", client_connection);
       } else {
         client_connection->code = MHD_HTTP_OK;
+        printf("---- request: %s\n", client_connection->request.str().c_str());
         handler->HandleRequest(client_connection->request.str(), response);
         client_connection->server->SendResponse(response, client_connection);
       }

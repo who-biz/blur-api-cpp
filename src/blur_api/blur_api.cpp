@@ -55,7 +55,7 @@ Json::Value BlurAPI::getblockchaininfo()
 Json::Value BlurAPI::getblock(std::string const& blockhash)
 {
     Json::Value result, params;
-    params["blockhash"] = blockhash;
+    params.append(blockhash);
     try {
       result = sendcommand("btc_getblock", params);
     } catch (BlurException& error) {

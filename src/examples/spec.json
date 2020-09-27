@@ -160,10 +160,7 @@
     },
     {
         "name": "getbestblockhash",
-        "returns": {
-           "hex": "xxxxxxxxxxxxxxxxxxxxxxx",
-           "status": "String"
-        }
+        "returns": "xxxxxxxxxxxxxxxxxxxxxxx"
     },
     {
         "name": "getblockhash",

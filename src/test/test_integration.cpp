@@ -171,11 +171,8 @@ public:
     return result;
   }
 
-  virtual Json::Value getbestblockhash() {
-    Json::Value result;
-    result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";
-    result["status"] = "OK";
-    return result;
+  virtual std::string getbestblockhash() {
+    return "xxxxxxxxxxxxxx";
   }
 
   virtual Json::Value getblockhash(int height) {

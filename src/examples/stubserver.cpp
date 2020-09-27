@@ -41,7 +41,7 @@ public:
   virtual Json::Value getinfo();
   virtual Json::Value get_notarization_data();
   virtual Json::Value validateaddress(std::string const& address);
-  virtual Json::Value getbestblockhash();
+  virtual std::string getbestblockhash();
   virtual Json::Value getblockhash(int const height);
   virtual Json::Value sendrawtransaction(std::string const& signedhex);
   virtual Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs);
@@ -83,9 +83,9 @@ Json::Value MyStubServer::validateaddress(std::string const& address) {
   return result;
 }
 
-Json::Value MyStubServer::getbestblockhash() {
-  Json::Value result = m_blur_api->getbestblockhash();
-  return result;
+std::string MyStubServer::getbestblockhash() {
+  Json::Value temp = m_blur_api->getbestblockhash();
+  return temp["hex"].asString();
 }
 
 Json::Value MyStubServer::getblockhash(int const height) {

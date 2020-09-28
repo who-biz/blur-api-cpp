@@ -44,10 +44,7 @@
         "params": [
            "string"
         ],
-        "returns": {
-          "status": "String",
-          "data": "block"
-        }
+        "returns": "block"
     },
     {
         "name": "sendrawtransaction",

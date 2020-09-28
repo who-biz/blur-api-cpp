@@ -37,7 +37,7 @@ public:
   BlurAPI* m_blur_api;
   virtual void notifyServer();
   virtual Json::Value getblockchaininfo();
-  virtual std::string getblock(std::string const& blockhash);
+  virtual Json::Value getblock(std::string const& blockhash);
   virtual Json::Value getinfo();
   virtual Json::Value get_notarization_data();
   virtual Json::Value validateaddress(std::string const& address);
@@ -63,9 +63,8 @@ Json::Value MyStubServer::getblockchaininfo() {
   return result;
 }
 
-std::string MyStubServer::getblock(std::string const& blockhash) {
-  Json::Value temp = m_blur_api->getblock(blockhash);
-  std::string result = temp["data"].asString();
+Json::Value MyStubServer::getblock(std::string const& blockhash) {
+  Json::Value result = m_blur_api->getblock(blockhash);
   return result;
 }
 

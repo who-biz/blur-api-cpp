@@ -44,7 +44,23 @@
         "params": [
            "string"
         ],
-        "returns": "block"
+        "returns": {
+           "last_notarized_height": 1234,
+           "hash": "xxxxxxxxxxxxxxxx",
+           "confirmations": 1,
+           "rawconfirmations": 1234,
+           "size": 123412,
+           "height": 1234,
+           "tx": [
+              "xxxxxxxxxxxxxxxx",
+              "xxxxxxxxxxxxxxxx"
+           ],
+           "chainwork": 1234,
+           "difficulty": 1234,
+           "previousblockhash": "xxxxxxxxxxxxxx",
+           "solution": "String",
+           "data":"String"
+        }
     },
     {
         "name": "sendrawtransaction",

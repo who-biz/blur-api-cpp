@@ -87,8 +87,12 @@ public:
     return result;
   }
 
-  virtual std::string getblock(std::string const& blockhash) {
-    std::string result = "xxxxxxxxxxxx";
+  virtual Json::Value getblock(std::string const& blockhash) {
+    Json::Value result;
+    result["hash"] = "xxxxxxxxxxxx";
+    result["solution"] = "xxxxxxxxxxxx";
+    result["data"] = "xxxxxxxxxxxx";
+    result["previousblockhash"] = "xxxxxxxxxxxx";
     return result;
   }
 

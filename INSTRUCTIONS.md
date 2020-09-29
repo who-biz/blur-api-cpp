@@ -120,7 +120,7 @@ Response:
 Parameters: `[ "address" ]`
 
 ```
- curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockhash", "params":["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"]}' http://localhost:8383
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "validateaddress", "params":["xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"]}' http://localhost:8383
 ```
 
 Response:
@@ -134,13 +134,14 @@ Response:
 **Method: `getblock`**
 
 ```
-curl --data-binary '{"jsonrpc":"1.0","id":"curltest","method":"getblock","params":["530ff48d3ec8b9944af6c9872bab3216108f9a252c294165ad6ff196fbea7f08"]}' http://localhost:8383
+curl --data-binary '{"jsonrpc":"1.0", "id":"curltest", "method":"getblock", "params":["530ff48d3ec8b9944af6c9872bab3216108f9a252c294165ad6ff196fbea7f08"]}' http://localhost:8383
+
 ```
 
 Response:
 
 ```
-{"error":null,"id":"curltest","result":{"data":"0b0bfde396f90585e42f3002518fed05a82bcbed095d329f5f93528a55c0e0da1b2cd6ce2ec73a29ee936401bb1a01ffa21a019f80a3c390f80102049f7fbc1226eb70ec63b555bc96fe4d91c694f292d01517717c2b55c2c4486a2101aa1fe96208acdc8f41b561d51acf8ff6791f395f71f44679970e19a7bf8f28ac0001f2767b2c9c6004f03d29776a790d8ecc5e88117e160fb602ed33e0d81255cbdf","status":"OK"}}
+{"error":null,"id":"curltest","result":{"chainwork":"3d40b03591a4f676a15c4b3ee41ad9ee28b191e460749dcbef3a6a395b63ac0e","confirmations":3819,"data":"0b0bfde396f90585e42f3002518fed05a82bcbed095d329f5f93528a55c0e0da1b2cd6ce2ec73a29ee936401bb1a01ffa21a019f80a3c390f80102049f7fbc1226eb70ec63b555bc96fe4d91c694f292d01517717c2b55c2c4486a2101aa1fe96208acdc8f41b561d51acf8ff6791f395f71f44679970e19a7bf8f28ac0001f2767b2c9c6004f03d29776a790d8ecc5e88117e160fb602ed33e0d81255cbdf","difficulty":1,"hash":"530ff48d3ec8b9944af6c9872bab3216108f9a252c294165ad6ff196fbea7f08","last_notarized_height":3362,"merkleroot":"f2767b2c9c6004f03d29776a790d8ecc5e88117e160fb602ed33e0d81255cbdf","previousblockhash":"8c21399e96002d451e6e9a628f95a0902bc862927d6eae884e8df8e60ad4bca1","rawconfirmations":3819,"size":53084,"solution":"0b0bfde396f90585e42f3002518fed05a82bcbed095d329f5f93528a55c0e0da1b2cd6ce2ec73a29ee936401bb1a01ffa21a019f80a3c390f80102049f7fbc1226eb70ec63b555bc96fe4d91c694f292d01517717c2b55c2c4486a2101aa1fe96208acdc8f41b561d51acf8ff6791f395f71f44679970e19a7bf8f28ac0001f2767b2c9c6004f03d29776a790d8ecc5e88117e160fb602ed33e0d81255cbdf","status":"OK","tx":["f2767b2c9c6004f03d29776a790d8ecc5e88117e160fb602ed33e0d81255cbdf"],"version":11}}
 ```
 
 ---

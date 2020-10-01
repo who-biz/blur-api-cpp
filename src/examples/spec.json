@@ -49,7 +49,8 @@
            "last_notarized_height": 1234,
            "hash": "xxxxxxxxxxxxxxxx",
            "confirmations": 1,
-           "rawconfirmations": 1234,
+           "rawconfirmations": 1,
+           "previousblockhash": "xxxxxxxxxxxx",
            "size": 123412,
            "height": 1234,
            "tx": [
@@ -58,9 +59,11 @@
            ],
            "chainwork": "xxxxxxxxxxxxx",
            "difficulty": 1234,
+           "time": 123551913,
            "previousblockhash": "xxxxxxxxxxxxxx",
            "solution": "String",
-           "data":"String"
+           "data":"String",
+           "version": 11
         }
     },
     {

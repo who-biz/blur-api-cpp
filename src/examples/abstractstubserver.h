@@ -19,7 +19,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
             this->bindAndAddMethod(jsonrpc::Procedure("getinfo", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getinfoI);
             this->bindAndAddMethod(jsonrpc::Procedure("get_notarization_data", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::get_notarization_dataI);
             this->bindAndAddMethod(jsonrpc::Procedure("validateaddress", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::validateaddressI);
-            this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getbestblockhashI);
+            this->bindAndAddMethod(jsonrpc::Procedure("getbestblockhash", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_STRING,  NULL), &AbstractStubServer::getbestblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("getblockhash", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::getblockhashI);
             this->bindAndAddMethod(jsonrpc::Procedure("calc_MoM", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER, NULL), &AbstractStubServer::calc_MoMI);
             this->bindAndAddMethod(jsonrpc::Procedure("listunspent", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_ARRAY, "param01",jsonrpc::JSON_INTEGER,"param02",jsonrpc::JSON_INTEGER,"param03",jsonrpc::JSON_ARRAY, NULL), &AbstractStubServer::listunspentI);
@@ -81,7 +81,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         virtual Json::Value getinfo() = 0;
         virtual Json::Value get_notarization_data() = 0;
         virtual Json::Value validateaddress(const std::string& param01) = 0;
-        virtual Json::Value getbestblockhash() = 0;
+        virtual std::string getbestblockhash() = 0;
         virtual Json::Value getblockhash(int param01) = 0;
         virtual Json::Value calc_MoM(int param01, int param02) = 0;
         virtual Json::Value listunspent(int param01, int param02, const Json::Value& param03) = 0;

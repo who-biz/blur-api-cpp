@@ -34,7 +34,7 @@ class MyStubServer : public AbstractStubServer, public BlurAPI {
 public:
   MyStubServer(AbstractServerConnector &connector, serverVersion_t type);
 
-  BlurAPI* m_blur_api;
+  std::unique_ptr<BlurAPI> m_blur_api;
   virtual void notifyServer();
   virtual Json::Value getblockchaininfo();
   virtual Json::Value getblock(std::string const& blockhash);
@@ -54,7 +54,7 @@ MyStubServer::MyStubServer(AbstractServerConnector &connector,
                            serverVersion_t type)
     : AbstractStubServer(connector, type), m_blur_api(new BlurAPI(username, password, blur_host, blur_port)) {}
 
-MyStubServer::~MyStubServer() { delete m_blur_api; }
+MyStubServer::~MyStubServer() { }
 
 void MyStubServer::notifyServer() { std::cout << "Server got notified" << std::endl; }
 

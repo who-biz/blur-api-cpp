@@ -18,6 +18,7 @@
  *****************************************************/
 #include <string>
 #include <list>
+#include <memory>
 #include "exception.h"
 
 namespace jsonrpc { class HttpClient; class Client; }
@@ -32,12 +33,12 @@ class BlurAPI
 {
 
 private:
-    jsonrpc::HttpClient * httpClient;
-    jsonrpc::Client * client;
+    std::unique_ptr<jsonrpc::HttpClient> httpClient;
+    std::unique_ptr<jsonrpc::Client> client;
 
 public:
     BlurAPI(const std::string& user, const std::string& password, const std::string& host, int port, int httpTimeout = 5000);
-    BlurAPI* m_blur_api;
+    std::unique_ptr<BlurAPI> m_blur_api;
     Json::Value getblockchaininfo();
     Json::Value getblock(std::string const& blockhash);
     Json::Value validateaddress(std::string const& address);
@@ -49,6 +50,6 @@ public:
     Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs);
     Json::Value listunspent(int const& minconf, int const& maxconf, std::list<std::string> const& address);
     BlurAPI();
-    virtual ~BlurAPI();
+    ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);
 };

@@ -35,11 +35,7 @@ BlurAPI::BlurAPI(const std::string& user, const std::string& password,
     httpClient->SetTimeout(httpTimeout);
 }
 
-BlurAPI::~BlurAPI()
-{
-    delete client;
-    delete httpClient;
-}
+BlurAPI::~BlurAPI() { }
 
 Json::Value BlurAPI::getblockchaininfo()
 {

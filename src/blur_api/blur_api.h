@@ -44,7 +44,7 @@ public:
     Json::Value getbestblockhash();
     Json::Value get_notarization_data();
     Json::Value getblockhash(int const& height);
-    Json::Value calc_MoM(int const& height, int const& MoMdepth);
+    Json::Value calc_MoM(std::string const& height, std::string const& MoMdepth);
     Json::Value sendrawtransaction(std::string const& signedhex);
     Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs);
     Json::Value listunspent(int const& minconf, int const& maxconf, std::list<std::string> const& address);

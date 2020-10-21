@@ -110,7 +110,7 @@ Json::Value BlurAPI::getblockhash(int const& height)
     return result;
 }
 
-Json::Value BlurAPI::calc_MoM(int const& height, int const& MoMdepth)
+Json::Value BlurAPI::calc_MoM(std::string const& height, std::string const& MoMdepth)
 {
     Json::Value result, params;
     params.append(height);

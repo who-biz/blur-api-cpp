@@ -185,7 +185,7 @@ public:
     return result;
   }
 
-  virtual Json::Value calc_MoM(int height, int MoMdepth) {
+  virtual Json::Value calc_MoM(std::string const& height, std::string const& MoMdepth) {
     Json::Value result, params;
     params.append(height), params.append(MoMdepth);
     result["coin"] = "BLUR";

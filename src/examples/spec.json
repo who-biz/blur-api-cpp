@@ -192,8 +192,8 @@
     {
         "name": "calc_MoM",
         "params": [
-           1000,
-              1
+           "1000",
+              "1"
         ],
         "returns": {
            "coin": "BLUR",

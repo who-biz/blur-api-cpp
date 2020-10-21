@@ -177,11 +177,10 @@ public:
     return "xxxxxxxxxxxxxx";
   }
 
-  virtual Json::Value getblockhash(int height) {
-    Json::Value result, params;
+  virtual std::string getblockhash(int height) {
+    Json::Value params;
     params.append(height);
-    result["hex"] = "xxxxxxxxxxxxxxxxxxxxxxxx";
-    result["status"] = "OK";
+    std::string result = "xxxxxxxxxxxxxxx";
     return result;
   }
 

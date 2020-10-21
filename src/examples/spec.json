@@ -2,8 +2,8 @@
     {
         "name": "getblockchaininfo",
         "returns": {
-           "status": "String",
            "height": 0,
+           "blocks": 0,
            "target_height": 0,
            "difficulty": 0,
            "target": 0,
@@ -36,7 +36,8 @@
            "bootstrap_daemon_address": "String",
            "height_without_bootstrap": 0,
            "was_bootstrap_ever_used": false,
-           "version": "String"
+           "version": "String",
+           "status": "OK"
         }
     },
     {
@@ -61,6 +62,7 @@
            "difficulty": 1234,
            "time": 123551913,
            "previousblockhash": "xxxxxxxxxxxxxx",
+           "solution": "String",
            "data":"String",
            "version": 11
         }
@@ -104,8 +106,8 @@
     {
         "name": "getinfo",
         "returns": {
-           "status": "String",
            "height": 0,
+           "blocks": 0,
            "target_height": 0,
            "difficulty": 0,
            "target": 0,
@@ -138,7 +140,8 @@
            "bootstrap_daemon_address": "String",
            "height_without_bootstrap": 0,
            "was_bootstrap_ever_used": false,
-           "version": "String"
+           "version": "String",
+           "status": "String"
         }
     },
     {
@@ -183,10 +186,7 @@
         "params": [
            1000
         ],
-        "returns": {
-           "hex": "xxxxxxxxxxxxxxxxxxxxxxx",
-           "status": "String"
-        }
+        "returns": "xxxxxxxxxxxxxxxxxxxxxxx"
     },
     {
         "name": "calc_MoM",

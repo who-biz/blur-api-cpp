@@ -61,7 +61,6 @@
            "difficulty": 1234,
            "time": 123551913,
            "previousblockhash": "xxxxxxxxxxxxxx",
-           "solution": "String",
            "data":"String",
            "version": 11
         }

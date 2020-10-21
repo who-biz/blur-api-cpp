@@ -49,6 +49,6 @@ public:
     Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs);
     Json::Value listunspent(int const& minconf, int const& maxconf, std::list<std::string> const& address);
     BlurAPI();
-    ~BlurAPI();
+    virtual ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);
 };

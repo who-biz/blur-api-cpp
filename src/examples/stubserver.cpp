@@ -117,9 +117,11 @@ Json::Value MyStubServer::listunspent(int const minconf, int const maxconf, Json
   Json::Value blurapi_result = m_blur_api->listunspent(minconf, maxconf, addr_list);
   Json::Value result, itemone, itemtwo;
   for (auto& each : blurapi_result["entries"]) {
-    each["amount"] = 0.0001;
-    each["solvable"] = false;
-    result.append(each);
+    for (size_t n = 0; n < 10; n++) {
+      each["amount"] = 0.0001;
+      each["solvable"] = false;
+      result.append(each);
+    }
   }
   return result;
 }

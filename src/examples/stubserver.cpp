@@ -119,6 +119,7 @@ Json::Value MyStubServer::listunspent(int const minconf, int const maxconf, Json
   uint16_t vout = 0;
   for (auto& each : blurapi_result["entries"]) {
     for (size_t n = 0; n < 10; n++) {
+      each["scriptPubKey"] = "76a914db8a14ad84fedb72704cdc1b0999c2cd4bc7df0788ac";
       each["amount"] = 0.00010000;
       each["vout"] = vout;
       vout++;

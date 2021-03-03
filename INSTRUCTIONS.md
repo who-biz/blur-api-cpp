@@ -102,7 +102,7 @@ Response:
 Parameters: `[ height, MoMdepth ]`
 
 ```
- curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "calc_MoM", "params":[1000, 1]}' http://localhost:8383
+ curl --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "calc_MoM", "params":["1000", "1"]}' http://localhost:8383
 ```
 
 Response:

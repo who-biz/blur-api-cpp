@@ -109,8 +109,8 @@ Json::Value BlurAPI::getblockhash(int const& height)
 Json::Value BlurAPI::calc_MoM(std::string const& height, std::string const& MoMdepth)
 {
     Json::Value result, params;
-    params["height"] = height;
-    params["MoMdepth"] = MoMdepth;
+    params.append(height);
+    params.append(MoMdepth);
     try {
       result = sendcommand("btc_calc_MoM", params);
     } catch (BlurException& error) {

@@ -198,7 +198,8 @@
            "coin": "BLUR",
            "notarized_height": 1000,
            "notarized_MoMdepth": 1,
-           "notarized_MoM": "xxxxxxxxxxxxxxxxxxxxxx"
+           "notarized_MoM": "xxxxxxxxxxxxxxxxxxxxxx",
+           "status": "string"
         }
     },
     {

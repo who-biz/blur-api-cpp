@@ -94,7 +94,7 @@ void HttpClient::SendRPCMessage(const std::string &message,
   curl_slist_free_all(headers);
   if (res != CURLE_OK) {
     std::stringstream str;
-    str << "libcurl error: " << res;
+    str << "libcurl error: " << res << ", for message: " << message;
 
     if (res == 7)
       str << " -> Could not connect to " << this->url;

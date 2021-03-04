@@ -93,17 +93,17 @@ class StubClient : public jsonrpc::Client
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        Json::Value getblockhash(int param01) 
+        std::string getblockhash(int param01) 
         {
             Json::Value p;
             p.append(param01);
             Json::Value result = this->CallMethod("getblockhash",p);
-            if (result.isObject())
-                return result;
+            if (result.isString())
+                return result.asString();
             else
                 throw jsonrpc::JsonRpcException(jsonrpc::Errors::ERROR_CLIENT_INVALID_RESPONSE, result.toStyledString());
         }
-        Json::Value calc_MoM(int param01, int param02) 
+        Json::Value calc_MoM(const std::string& param01, const std::string& param02) 
         {
             Json::Value p;
             p.append(param01);

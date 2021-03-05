@@ -19,6 +19,7 @@
 #include <string>
 #include <list>
 #include <memory>
+#include <mutex>
 #include "exception.h"
 
 namespace jsonrpc { class HttpClient; class Client; }
@@ -52,4 +53,5 @@ public:
     BlurAPI();
     ~BlurAPI();
     Json::Value sendcommand(std::string const& command, Json::Value const& params);
+    std::mutex command_lock;
 };

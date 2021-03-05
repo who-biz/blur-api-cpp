@@ -174,6 +174,7 @@ BlurAPI::BlurAPI() {
 
 Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& params)
 {
+    command_lock.lock();
     Json::Value result;
     try {
       result = client->CallMethod(command, params);
@@ -182,5 +183,6 @@ Json::Value BlurAPI::sendcommand(std::string const& command, Json::Value const& 
        throw error;
     }
     printf("--  Called method: %s  --\n", command.c_str());
+    command_lock.unlock();
     return result;
 }

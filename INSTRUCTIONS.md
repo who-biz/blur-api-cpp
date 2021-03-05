@@ -15,13 +15,13 @@ Supported command line options are:
 
 # Compiling and Running the BlurAPI Server
 
-**First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev libmicrohttpd-dev libargtable2-dev cmake`
+**First, install dependencies:** `sudo apt install libjsoncpp-dev curl libboost-program-options-dev libmicrohttpd-dev libargtable2-dev libssl-dev libcurl4-openssl-dev libhiredis-dev build-essential cmake`
 
 **Next, compile and install `libjson-rpc-cpp`:**
 
 ```
 git clone git clone https://github.com/cinemast/libjson-rpc-cpp.git
-mkdir build && cd build && cmake .. && make -j4
+cd libjson-rpc-cpp && mkdir build && cd build && cmake .. && make -j4
 sudo make install
 ```
 

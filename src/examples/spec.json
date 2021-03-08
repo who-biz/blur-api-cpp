@@ -217,7 +217,7 @@
               "scriptPubKey": "xxxxxxxxxxx",
               "amount": 1.25,
               "confirmations": 25,
-              "redeemScript": "xxxxxxxxxxx",
+              "segid": 4,
               "spendable": true,
               "solvable": true,
               "safe": true

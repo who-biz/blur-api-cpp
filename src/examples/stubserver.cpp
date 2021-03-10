@@ -209,6 +209,7 @@ int main(int ac, char** av) {
   s.StartListening();
   std::cout << std::endl << "Hit enter to stop the server" << std::endl;
   getchar();
+  std::cout << "User input detected, stopping blurapiserver..." << std::endl;
   s.StopListening();
 
   return 0;

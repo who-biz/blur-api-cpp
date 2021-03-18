@@ -35,7 +35,9 @@ sudo make install
 
 
 3. Start the BlurAPI server, including `--blur-port` startup flag (this should be the port your Blur daemon will be running on): `./bin/blurapiserver --blur-port=21111`
-4. Launch the Blur Network daemon with the following options: `./blurd --testnet`
+4. Launch the Blur Network daemon with the following options: `./blurd --testnet --p2p-bind-port=11111 --btc-pubkey=<33byte bitcoin pubkey>`
+
+Ensure that your 33-byte pubkey matches the one used to launch both `komodod` and `iguana`.  Example: `./blurd --testnet --p2p-bind-port=11111 --btc-pubkey=037db090cbbe154b7e0a0742032208250537e42ad822968cd5419ce5913a4d8afb`. If you have a notary node set up for komodo, or iguana, it should be the same pubkey specified in `pubkey.txt` or on the commandline.
 
 
 *Note: Ensure that your `blurd` was built from the <a href="https://github.com/blur-network/dpow-blur">blur-network/dpow-blur repository</a>, `testnet` branch*

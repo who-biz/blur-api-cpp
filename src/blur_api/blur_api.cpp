@@ -168,6 +168,18 @@ Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Valu
     return result;
 }
 
+Json::Value BlurAPI::decoderawtransaction(std::string const& hex)
+{
+    Json::Value result, params;
+    params.append(hex);
+    try {
+      result = sendcommand("btc_decoderawtransaction", params);
+    } catch (BlurException& error) {
+      std::cerr << error.getMessage() << std::endl;
+    }
+    return result;
+}
+
 BlurAPI::BlurAPI() {
     BlurAPI blur(username, password, blur_host, blur_port);
 }

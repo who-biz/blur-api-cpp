@@ -104,6 +104,25 @@
         }
     },
     {
+        "name": "decoderawtransaction",
+        "params": [
+          "xxxxxxxxxxxxxxxx"
+        ],
+        "returns": {
+          "txid": "String",
+          "vin": [
+            {
+               "txid": "xxxxxxxxxxxx",
+               "scriptSig" : "xxxxxxxxxx"
+            },
+            {
+               "txid": "xxxxxxxxxxxx",
+               "scriptSig" : "xxxxxxxxxx"
+            }
+          ]
+        }
+    },
+    {
         "name": "getinfo",
         "returns": {
            "height": 0,

@@ -174,7 +174,7 @@ public:
   }
 
   virtual Json::Value decoderawtransaction(std::string const& hex) {
-    Json::Value result, params; vinitem;
+    Json::Value result, params, vinitem;
     params.append(hex);
     result["txid"] = "xxxxxxxxxx";
     vinitem["txid"] = "xxxxxxxx";

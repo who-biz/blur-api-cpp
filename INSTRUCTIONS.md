@@ -191,6 +191,20 @@ Response:
 
 ---
 
+**Method: `decoderawtransaction`**
+
+```
+curl --data-binary '{"jsonrpc":"1.0", "id":"curltest", "method":"decoderawtransaction", "params":["xxxxxxxxxxxxxx"]}' http://localhost:8383
+```
+
+Response:
+
+```
+{"error":null,"id":"curltest","result":{"txid":"03434facb16bc415666f608d97978df1a044ee969bafb5f9c6d149cdf69f49d1","vin":[{"scriptSig":{"hex":"21037db090cbbe154b7e0a0742032208250537e42ad822968cd5419ce5913a4d8afbac"},"txid":"03434facb16bc415666f608d97978df1a044ee969bafb5f9c6d149cdf69f49d1"}]}}
+```
+
+---
+
 **Method: `signrawtransaction`**
 
 ```

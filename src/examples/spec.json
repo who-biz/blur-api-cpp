@@ -113,11 +113,27 @@
           "vin": [
             {
                "txid": "xxxxxxxxxxxx",
-               "scriptSig" : "xxxxxxxxxx"
+               "scriptSig" : {
+                   "hex" : "xxxxxxxxxx"
+               }
             },
             {
                "txid": "xxxxxxxxxxxx",
-               "scriptSig" : "xxxxxxxxxx"
+               "scriptSig" : {
+                   "hex" : "xxxxxxxxxx"
+               }
+            }
+          ],
+          "vout": [
+            {
+               "scriptPubKey" : {
+                   "hex" : "xxxxxxxxxx"
+               }
+            },
+            {
+               "scriptPubKey" : {
+                   "hex" : "xxxxxxxxxx"
+               }
             }
           ]
         }

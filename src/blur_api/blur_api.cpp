@@ -150,7 +150,7 @@ Json::Value BlurAPI::listunspent(int const& minconf, int const& maxconf, std::li
 Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs)
 {
     Json::Value result, params, item;
-/*    params["hexstring"] = hexstring;
+    params["hexstring"] = hexstring;
     for (const auto& each : prevtxs) {
       item["txid"] = each[0u].asString();
       item["vout"] = each[1u].asInt();
@@ -158,7 +158,7 @@ Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Valu
       item["redeemScript"] = each[3u].asString();
       item["amount"] = (each[4u].asFloat()*100000000);
       params["prevtxs"].append(item);
-    }*/
+    }
 
     try {
       result = sendcommand("btc_signrawtransaction", params);

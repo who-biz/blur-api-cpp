@@ -81,20 +81,18 @@
         "name": "signrawtransaction",
         "params": [
            "hexstring", [
-              [
-                 "txid",
-                 51,
-                 "scriptPubKey",
-                 "redeemScript",
-                 0.001000
-              ],
-              [
-                 "txid",
-                 51,
-                 "scriptPubKey",
-                 "redeemScript",
-                 0.001000
-              ]
+              {
+                 "txid": "xxxxx",
+                 "vout": 51,
+                 "scriptPubKey": "xxxxxxxx",
+                 "amount": 0.001000
+              },
+              {
+                 "txid": "xxxxx",
+                 "vout": 51,
+                 "scriptPubKey": "xxxxxxxx",
+                 "amount": 0.001000
+              }
            ]
         ],
         "returns": {

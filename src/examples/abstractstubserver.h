@@ -16,6 +16,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
             this->bindAndAddMethod(jsonrpc::Procedure("getblock", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::getblockI);
             this->bindAndAddMethod(jsonrpc::Procedure("sendrawtransaction", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::sendrawtransactionI);
             this->bindAndAddMethod(jsonrpc::Procedure("signrawtransaction", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING,"param02",jsonrpc::JSON_ARRAY, NULL), &AbstractStubServer::signrawtransactionI);
+            this->bindAndAddMethod(jsonrpc::Procedure("decoderawtransaction", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::decoderawtransactionI);
             this->bindAndAddMethod(jsonrpc::Procedure("getinfo", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::getinfoI);
             this->bindAndAddMethod(jsonrpc::Procedure("get_notarization_data", jsonrpc::PARAMS_BY_NAME, jsonrpc::JSON_OBJECT,  NULL), &AbstractStubServer::get_notarization_dataI);
             this->bindAndAddMethod(jsonrpc::Procedure("validateaddress", jsonrpc::PARAMS_BY_POSITION, jsonrpc::JSON_OBJECT, "param01",jsonrpc::JSON_STRING, NULL), &AbstractStubServer::validateaddressI);
@@ -41,6 +42,10 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         inline virtual void signrawtransactionI(const Json::Value &request, Json::Value &response)
         {
             response = this->signrawtransaction(request[0u].asString(), request[1u]);
+        }
+        inline virtual void decoderawtransactionI(const Json::Value &request, Json::Value &response)
+        {
+            response = this->decoderawtransaction(request[0u].asString());
         }
         inline virtual void getinfoI(const Json::Value &/*request*/, Json::Value &response)
         {
@@ -78,6 +83,7 @@ class AbstractStubServer : public jsonrpc::AbstractServer<AbstractStubServer>
         virtual Json::Value getblock(const std::string& param01) = 0;
         virtual Json::Value sendrawtransaction(const std::string& param01) = 0;
         virtual Json::Value signrawtransaction(const std::string& param01, const Json::Value& param02) = 0;
+        virtual Json::Value decoderawtransaction(const std::string& param01) = 0;
         virtual Json::Value getinfo() = 0;
         virtual Json::Value get_notarization_data() = 0;
         virtual Json::Value validateaddress(const std::string& param01) = 0;

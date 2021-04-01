@@ -149,14 +149,14 @@ Json::Value BlurAPI::listunspent(int const& minconf, int const& maxconf, std::li
 
 Json::Value BlurAPI::signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs)
 {
-    Json::Value result, params, item;
+    Json::Value result, params;
     params["hexstring"] = hexstring;
     for (const auto& each : prevtxs) {
-      item["txid"] = each[0u].asString();
-      item["vout"] = each[1u].asInt();
-      item["scriptPubKey"] = each[2u].asString();
-      item["redeemScript"] = each[3u].asString();
-      item["amount"] = (each[4u].asFloat()*100000000);
+      Json::Value item;
+      item["txid"] = each["txid"].asString();
+      item["vout"] = each["vout"];
+      item["scriptPubKey"] = each["scriptPubKey"].asString();
+      item["amount"] = 100000;
       params["prevtxs"].append(item);
     }
 

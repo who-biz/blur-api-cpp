@@ -73,8 +73,7 @@
            "string"
         ],
         "returns": {
-          "status": "String",
-          "hex": "xxxxxxxxxxxx"
+          "xxxxxxxxxxxx"
         }
     },
     {

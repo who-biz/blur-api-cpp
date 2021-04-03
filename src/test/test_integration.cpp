@@ -134,12 +134,10 @@ public:
     return result;
   }
 
-  virtual Json::Value sendrawtransaction(std::string const& signedhex) {
+  virtual std::string sendrawtransaction(std::string const& signedhex) {
     Json::Value result, params;
     params.append(signedhex);
-    result["hex"] = "xxxxxxxxxx";
-    result["status"] = "OK";
-    return result;
+    return result["hex"].asString();
   }
 
   virtual Json::Value signrawtransaction(std::string const& hexstring, Json::Value const& prevtxs) {

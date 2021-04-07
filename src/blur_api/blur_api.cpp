@@ -97,7 +97,7 @@ Json::Value BlurAPI::getbestblockhash()
 Json::Value BlurAPI::getblockhash(int const& height)
 {
     Json::Value result, params;
-    params.append(height);
+    params["height"] = height;
     try {
       result = sendcommand("btc_getblockhash", params);
     } catch (BlurException& error) {

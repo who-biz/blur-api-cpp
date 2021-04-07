@@ -20,7 +20,7 @@ Supported command line options are:
 **Next, compile and install `libjson-rpc-cpp`:**
 
 ```
-git clone git clone https://github.com/cinemast/libjson-rpc-cpp.git
+git clone https://github.com/cinemast/libjson-rpc-cpp.git
 cd libjson-rpc-cpp && mkdir build && cd build && cmake .. && make -j4
 sudo make install
 ```

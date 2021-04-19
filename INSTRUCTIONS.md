@@ -162,7 +162,7 @@ Response:
 
 ---
 
-<h4 id="get_notarization_data">get_notariation_data</h4>
+<h4 id="get_notarization_data">get_notarization_data</h4>
 
 ```
 curl --data-binary '{"jsonrpc":"1.0", "id":"curltest", "method":"get_notarization_data", "params":[]}' http://localhost:8383
